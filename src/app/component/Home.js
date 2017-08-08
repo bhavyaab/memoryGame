@@ -10,6 +10,10 @@ export class Home extends React.Component {
            <p>Your name: {this.props.name}</p>
            <p>Your age: {this.props.age} </p>
            <p> {text} </p>
+           <h4>Hobbies:</h4>
+           <ul>
+             {this.props.user.hobbies.map((hobby) => <li key={hobby}>{hobby}</li>)}
+           </ul>
       </div>
     );
   }

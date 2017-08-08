@@ -9,7 +9,8 @@ class App extends React.Component {
  render (){
     var user ={
       name: 'Ana',
-      age: 34
+      age: 34,
+      hobbies: ['Sports', 'Banana', 'Grapes']
     }
     return (
       <div className="container">
