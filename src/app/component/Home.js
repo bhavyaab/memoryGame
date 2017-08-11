@@ -2,7 +2,7 @@ import React from 'react'
 
 export class Home extends React.Component {
   render(){
-    console.log('props', this.props)
+    console.log('props - ', this.props)
     var text = 'some text'
     return (
       <div>
@@ -17,7 +17,14 @@ export class Home extends React.Component {
                <ul>
                  {this.props.user.hobbies.map((hobby, i) => <li key={i}>{hobby}</li>)}
               </ul>
+                 {this.props.children}
       </div>
     )
   }
+}
+
+Home.propTypes = {
+  name: React.PropTypes.string,
+  age: React.PropTypes.number,
+  user: React.PropTypes.object,
 }
