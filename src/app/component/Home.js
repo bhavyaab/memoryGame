@@ -1,16 +1,16 @@
-import React from 'react';
+import React from 'react'
 
 export class Home extends React.Component {
   constructor(props){
-    super();
-    this.score = props.user.score;
+    super()
+    this.state = { score: props.initialUser.score }
   }
   addScore (){
-    console.log(' Add score called and new score is ', this.score);
-    this.score += 3;
+    console.log(' Add score called and new score is ', this.score)
+    this.score += 3
   }
   render(){
-    console.log('props - ', this.props);
+    console.log('props - ', this.props)
     return (
       <div>
            <p>new Home Component!</p>
@@ -29,10 +29,10 @@ export class Home extends React.Component {
             <button className="btn btn-primary" onClick={this.addScore.bind(this)}>Add Score </button>
              <p>new score : {this.score} : {this.props.user.score}</p>
       </div>
-    );
+    )
   }
 }
 
 Home.propTypes = {
   user: React.PropTypes.object,
-};
+}

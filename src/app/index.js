@@ -1,18 +1,18 @@
 
-import React from 'react';
-import { render } from 'react-dom';
+import React from 'react'
+import { render } from 'react-dom'
 
-import {Header} from './component/Header';
-import { Home } from './component/Home';
+import {Header} from './component/Header'
+import { Home } from './component/Home'
 
 class App extends React.Component {
   render (){
-    var user ={
+    var initialUser ={
       name: 'Ana',
       age: 34,
       score: 0,
       hobbies: ['Sports', 'Banana', 'Grapes'],
-    };
+    }
     return (
       <div className="container">
         <div className="row">
@@ -22,11 +22,11 @@ class App extends React.Component {
          </div>
       <div className="row">
          <div className="col-xs-10 col-xs-offset-1">
-            <Home user={user}/>
+            <Home user={initialUser}/>
           </div>
        </div>
       </div>
-    );
+    )
   }
 }
-render(<App/>, document.getElementById('root'));
+render(<App/>, document.getElementById('root'))
