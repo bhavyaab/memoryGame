@@ -1,0 +1,23 @@
+@import "./vars.scss";
+
+html{
+max-height: $standar;
+max-width: $standar;
+}
+body {
+background-color: $color-main;
+max-height: $standar;
+max-width: $standar;
+}
+
+.oneImage{
+width: $standar;
+height: $standar;
+position: relative;
+img{
+position: absolute;
+width: $standar/6;
+height: $standar/10;
+border: 5px solid black;
+}
+}

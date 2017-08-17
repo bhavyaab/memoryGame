@@ -1,20 +1,24 @@
-var webpack = require('webpack')
-var path = require('path')
-var htmlPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
+const path = require('path')
+const htmlPlugin = require('html-webpack-plugin')
+const ExtractPlugin = require('extract-text-webpack-plugin')
 
-var DIST_DIR = path.resolve(__dirname, 'build')
-var SRC_DIR = path.resolve(__dirname, 'src')
+const DIST_DIR = path.resolve(__dirname, 'build')
+const SRC_DIR = path.resolve(__dirname, 'src')
 
 let plugins = [
   new htmlPlugin({template : `${__dirname}/src/index.html`}),
+  new ExtractPlugin('bundle-[hash].css'),
 ]
 
-var config = {
+const config = {
   plugins,
-  entry: SRC_DIR + '/app/index.js',
+  devtool: 'eval',
+  entry: SRC_DIR + '/index.js',
   output: {
     path: DIST_DIR,
     filename: 'bundle.js',
+    publicPath: '/',
   },
   module: {
     loaders: [
@@ -30,6 +34,10 @@ var config = {
         query: {
           presets: ['react', 'es2015', 'stage-2'],
         },
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractPlugin.extract(['css-loader', 'sass-loader']),
       },
     ],
   },
