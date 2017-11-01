@@ -10,14 +10,20 @@ max-height: $standar;
 max-width: $standar;
 }
 
-.oneImage{
-width: $standar;
-height: $standar;
+.blockImage{
+width: $standar * 0.8;
+height: $standar *0.8;
+margin: 10% 0 0 1%;
 position: relative;
-img{
+}
+
+.OneImage{
 position: absolute;
-width: $standar/6;
-height: $standar/10;
+width: $standar * 0.2;
+height: $standar * 0.2;
 border: 5px solid black;
+img{
+height: $standar;
+width: $standar;
 }
 }
