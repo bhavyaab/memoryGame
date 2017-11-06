@@ -1,6 +1,6 @@
 'use strict'
 
-let repoter = store => next => action => {
+let reporter = store => next => action => {
   console.log('__ACTION__', action)
   try{
     let result = next(action)

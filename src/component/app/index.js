@@ -3,8 +3,12 @@ import React from 'react'
 import {provider} from 'react-redux'
 import {BrowserRouter, Route} from 'react-router-dom'
 
-import { BlockImage } from '../BlockImage'
+import createStore from '../../lib/store.js'
+import landing from '../landing'
 
+const store = createStore()
+
+import { BlockImage } from '../BlockImage'
 console.log('__DEBUG__', __DEBUG__)
 
 class App extends React.Component {
@@ -12,15 +16,18 @@ class App extends React.Component {
     super(props)
     this.state = {}
   }
+  // <Route exact path='/' component={Landing}> />
   render (){
     return (
-      <main>
-        <BrowserRouter>
-          <section>
-            <Route exact path='' component={() => <BlockImage app={this.state} />} />
-          </section>
-        </BrowserRouter>
-      </main>
+      <section>
+        <provider store={store}>
+          <BrowserRouter>
+            <section>
+              <Route exact path='' component={() => <BlockImage app={this.state} />} />
+            </section>
+          </BrowserRouter>
+        </provider>
+      </section>
     )
   }
 }

@@ -5,7 +5,7 @@ import uuid from 'uuid/v1'
 
 export const startGame = (game) => ({
   type: 'START_GAME',
-  payload: {...game, id:uuid() },
+  payload: {...game, id: uuid() },
 })
 
 export const updateGame = (game) => ({
@@ -13,7 +13,7 @@ export const updateGame = (game) => ({
   payload: {...game},
 })
 
-export const endGame = (game) => {
+export const endGame = (game) => ({
   type: 'END_GAME',
-  payload: {...game}
-}
+  payload: {...game},
+})
