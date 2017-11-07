@@ -8,11 +8,24 @@ class Landing extends React.Component {
   constructor(props){
     super(props)
     console.log('state :: ', this.state, this.props)
+    this.handelClick = this.handelClick.bind(this)
   }
+  game = {
+    score: 0,
+    clicked: 0,
+    right: 0,
+  }
+  handelClick(e){
+    e.preventDefault()
+    this.props.startGame(this.game)
+    console.log('Button have beeen clicked:  ', this.state)
+  }
+
   render(){
     return (
       <section className='landing'>
           <h1>Landing</h1>
+          <button onClick={this.handelClick}>Start Game</button>
       </section>
     )
   }

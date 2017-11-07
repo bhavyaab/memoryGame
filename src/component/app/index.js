@@ -5,12 +5,13 @@ import {BrowserRouter, Route} from 'react-router-dom'
 
 import createAppStore from '../../lib/store.js'
 import Landing from '../landing'
+import BlockImage from '../blockImage'
 
 const store = createAppStore()
 
-import { BlockImage } from '../BlockImage'
 console.log('__DEBUG__', __DEBUG__)
 
+// <Route exact path='' component={() => <BlockImage app={this.state} />} />
 class App extends React.Component {
   constructor(props){
     super(props)
@@ -22,8 +23,7 @@ class App extends React.Component {
         <Provider store={store}>
           <BrowserRouter>
             <section>
-              <Route exact path='' component={() => <BlockImage app={this.state} />} />
-              <Route exact path='/landing' component={Landing} />
+              <Route exact path='/' component={Landing} />
             </section>
           </BrowserRouter>
         </Provider>

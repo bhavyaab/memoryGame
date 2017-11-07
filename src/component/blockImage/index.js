@@ -1,5 +1,5 @@
 import React from 'react'
-import { OneImage } from './OneImage'
+import OneImage from '../oneImage'
 
 export class BlockImage extends React.Component{
   constructor(props){
