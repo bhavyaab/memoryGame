@@ -1,12 +1,12 @@
 'use strict'
 import React from 'react'
-import {provider} from 'react-redux'
+import {Provider} from 'react-redux'
 import {BrowserRouter, Route} from 'react-router-dom'
 
-import createStore from '../../lib/store.js'
-import landing from '../landing'
+import createAppStore from '../../lib/store.js'
+import Landing from '../landing'
 
-const store = createStore()
+const store = createAppStore()
 
 import { BlockImage } from '../BlockImage'
 console.log('__DEBUG__', __DEBUG__)
@@ -16,17 +16,17 @@ class App extends React.Component {
     super(props)
     this.state = {}
   }
-  // <Route exact path='/' component={Landing}> />
   render (){
     return (
       <section>
-        <provider store={store}>
+        <Provider store={store}>
           <BrowserRouter>
             <section>
               <Route exact path='' component={() => <BlockImage app={this.state} />} />
+              <Route exact path='/landing' component={Landing} />
             </section>
           </BrowserRouter>
-        </provider>
+        </Provider>
       </section>
     )
   }

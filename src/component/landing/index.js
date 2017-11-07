@@ -4,15 +4,17 @@ import {connect} from 'react-redux'
 
 import {startGame, updateGame, endGame} from '../../action/game-action.js'
 
-class Landing extends React.Component{
-  constructor(){
-    super()
-    console.log('state :: ', this.state)
+class Landing extends React.Component {
+  constructor(props){
+    super(props)
+    console.log('state :: ', this.state, this.props)
   }
   render(){
-    <section className='landing'>
-        <h1>Landing</h1>
-    </section>
+    return (
+      <section className='landing'>
+          <h1>Landing</h1>
+      </section>
+    )
   }
 }
 
@@ -22,3 +24,13 @@ const mapStateToProps = (state) => {
     game: state.game,
   }
 }
+
+const mapDispatchToProp = (dispatch, getState) => {
+  return {
+    startGame: (game) => dispatch(startGame(game)),
+    updateGame: (game) => dispatch(updateGame(game)),
+    endGame: (game) => dispatch(endGame(game)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProp)(Landing)
