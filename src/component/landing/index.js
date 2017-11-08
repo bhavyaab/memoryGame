@@ -1,38 +1,40 @@
 'use strict'
 import React from 'react'
 import {connect} from 'react-redux'
+import {renderIf} from '../../lib/util'
+import {BlockImage} from '../blockImage'
+import {OneImage} from '../oneImage'
 
 import {startGame, updateGame, endGame} from '../../action/game-action.js'
 
 class Landing extends React.Component {
   constructor(props){
     super(props)
-    console.log('state :: ', this.state, this.props)
     this.handelClick = this.handelClick.bind(this)
-  }
-  game = {
-    score: 0,
-    clicked: 0,
-    right: 0,
+    this.state = {}
   }
   handelClick(e){
     e.preventDefault()
-    this.props.startGame(this.game)
-    console.log('Button have beeen clicked:  ', this.state)
+    this.props.startGame(this.props.game)
+    this.props.start = true
   }
-
+  componentDidUpdate(){
+    console.log('componentDidUpdate()  #################', this.props.game)
+  }
   render(){
     return (
       <section className='landing'>
           <h1>Landing</h1>
-          <button onClick={this.handelClick}>Start Game</button>
+          {renderIf(!this.props.game.id,<button onClick={this.handelClick}>Start Game</button>)}
+          {renderIf(this.props.game.id, <BlockImage app={this.state}/>)}
       </section>
     )
   }
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
+  console.log('mapStateToProps:  ', state)
   return {
     game: state.game,
   }
