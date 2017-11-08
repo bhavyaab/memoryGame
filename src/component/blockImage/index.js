@@ -25,11 +25,7 @@ export class BlockImage extends React.Component{
       return combinationArray
     }
     combination()
-
     var count = 0
-    console.log('combinationArray==', combinationArray, ' lookup ', lookup)
-
-    // const allImage = this.state.position.map( (i) => <OneImage key={i} image={this.state.images[combinationArray[i]]}/> )
     const allImage = []
     // var layout = {
     //   top: i * 20%,

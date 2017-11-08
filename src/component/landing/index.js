@@ -18,9 +18,6 @@ class Landing extends React.Component {
     this.props.startGame(this.props.game)
     this.props.start = true
   }
-  componentDidUpdate(){
-    console.log('componentDidUpdate()  #################', this.props.game)
-  }
   render(){
     return (
       <section className='landing'>
@@ -34,7 +31,6 @@ class Landing extends React.Component {
 
 
 const mapStateToProps = (state, props) => {
-  console.log('mapStateToProps:  ', state)
   return {
     game: state.game,
   }
