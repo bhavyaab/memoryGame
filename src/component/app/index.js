@@ -10,8 +10,6 @@ import BlockImage from '../blockImage'
 const store = createAppStore()
 
 console.log('__DEBUG__', __DEBUG__)
-
-// <Route exact path='' component={() => <BlockImage app={this.state} />} />
 class App extends React.Component {
   constructor(props){
     super(props)

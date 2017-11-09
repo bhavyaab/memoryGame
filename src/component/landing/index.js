@@ -5,6 +5,7 @@ import {renderIf} from '../../lib/util'
 import {BlockImage} from '../blockImage'
 import {OneImage} from '../oneImage'
 
+
 import {startGame, updateGame, endGame} from '../../action/game-action.js'
 
 class Landing extends React.Component {
@@ -13,17 +14,19 @@ class Landing extends React.Component {
     this.handelClick = this.handelClick.bind(this)
     this.state = {}
   }
+
   handelClick(e){
     e.preventDefault()
     this.props.startGame(this.props.game)
     this.props.start = true
   }
+  // {renderIf(!this.props.game.id,<button onClick={this.handelClick}>Start Game</button>)}
+  // {renderIf(this.props.game.id, <BlockImage />)}
   render(){
     return (
       <section className='landing'>
           <h1>Landing</h1>
-          {renderIf(!this.props.game.id,<button onClick={this.handelClick}>Start Game</button>)}
-          {renderIf(this.props.game.id, <BlockImage app={this.state}/>)}
+          <BlockImage />
       </section>
     )
   }

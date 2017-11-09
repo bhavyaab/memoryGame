@@ -1,4 +1,6 @@
-let initialState = {
+import Game from '../lib/gameUtil.js'
+
+let initialState =  {
   score: 0,
   clicked: 0,
   right: 0,
