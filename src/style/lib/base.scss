@@ -17,7 +17,7 @@ margin: 10% 0 0 1%;
 position: relative;
 }
 
-.OneImage{
+.oneImage{
 width: $standar * 0.2;
 height: $standar * 0.2;
 border: 3px solid $border-color;
@@ -27,7 +27,16 @@ img{
   width: $standar;
 }
 }
-
+.cards{
+    position: absolute;
+}
+#center{
+  top: 22.5%;
+  right: 23%;
+  height: 42.5%;
+  width: 42.5%;
+  position: absolute;
+}
 
 @media screen and (min-width: 960px) {
   body{
