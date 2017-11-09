@@ -9,7 +9,7 @@ export class OneImage extends React.Component{
   }
   render(){
     return (
-       <div className="oneImage">
+       <div style={this.props.style} className="oneImage" >
             <img src={this.props.image}/>
        </div>
     )

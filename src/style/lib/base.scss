@@ -6,8 +6,8 @@ max-width: $standar;
 }
 body {
 background-color: $color-main;
-max-height: $standar;
-max-width: $standar;
+width: $standar;
+max-width: 960px;
 }
 
 .blockImage{
@@ -18,12 +18,20 @@ position: relative;
 }
 
 .OneImage{
-position: absolute;
 width: $standar * 0.2;
 height: $standar * 0.2;
-border: 5px solid black;
+border: 3px solid $border-color;
+border-radius: $broder-radius/2;
 img{
-height: $standar;
-width: $standar;
+  height: $standar;
+  width: $standar;
 }
+}
+
+
+@media screen and (min-width: 960px) {
+  body{
+    max-width: 960px;
+    margin-left: calc(50% - 480px)
+  }
 }
