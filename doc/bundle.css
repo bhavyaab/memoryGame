@@ -1,0 +1,38 @@
+html {
+  max-height: 100%;
+  max-width: 100%; }
+
+body {
+  background-color: #cbfec4;
+  width: 100%;
+  max-width: 960px; }
+
+.blockImage {
+  width: 80%;
+  height: 80%;
+  margin: 10% 0 0 1%;
+  position: relative; }
+
+.oneImage {
+  width: 20%;
+  height: 20%;
+  border: 3px solid #dc9400;
+  border-radius: 2.5px; }
+  .oneImage img {
+    height: 100%;
+    width: 100%; }
+
+.cards {
+  position: absolute; }
+
+.center {
+  top: 22.5%;
+  right: 23%;
+  height: 42.5%;
+  width: 42.5%;
+  position: absolute; }
+
+@media screen and (min-width: 960px) {
+  body {
+    max-width: 960px;
+    margin-left: calc(50% - 480px); } }
