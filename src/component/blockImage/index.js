@@ -11,21 +11,23 @@ class BlockImage extends React.Component{
     this.state = {
       backCardImage: '../../data/cardBack.jpg',
       centerImage: '../../data/start.png',
-      images : ['../../data/apple.jpg', '../../data/book.jpg', '../../data/flower.jpg', '../../data/tiger.jpg'],
+      images : ['../../data/apple.jpg','../../data/book.jpg','../../data/flower.jpg','../../data/tiger.jpg'],
+      flip:"false",
+      center: 'false'
     }
-    props.flip = "false";
     this.startThisGame = this.startThisGame.bind(this)
     this.updateThisGame = this.updateThisGame.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
   startThisGame(e){
     e.preventDefault()
-    this.props.flip = !this.props.flip
+    var currentState = this.state.flip
+    this.setState({flip: !currentState})
     this.props.updateGame(this.props.game);
   }
   updateThisGame(picked, e){
     e.preventDefault()
-    if(this.props.game.combinationArray[picked] == this.props.game.selected) this.props.game.right++
+    if(picked == this.props.game.selected) this.props.game.right++
     e.target.parentNode.parentNode.classList = "flipper flip"
     this.props.game.clicked++;
     this.props.updateGame(this.props.game)
@@ -47,11 +49,11 @@ class BlockImage extends React.Component{
               top: `${i * 22.5}%`,
               right: `${j * 22.5}%`,
               position: `absolute`}}
-            classes={classes = this.props.flip? "flipper flip":"flipper"}
+            classes={classes = !this.state.flip? "flipper flip":"flipper"}
             frontImage={this.state.backCardImage}
             backImage={this.state.images[combinationArray[count]]}
             onChange={this.handleChange}
-            onClick={this.updateThisGame.bind(this, count)}
+            onClick={this.updateThisGame.bind(this, combinationArray[count])}
             />
           allImage[count] = element
           count++
@@ -70,9 +72,9 @@ class BlockImage extends React.Component{
             width: '42.5%',
             position: `absolute`,
             border: 'none'}}
-          classes={classes = !this.props.flip? "flipper flip":"flipper"}
+          classes={classes = !this.state.center? "flipper flip":"flipper"}
           frontImage={this.state.centerImage}
-          backImage={this.state.images[combinationArray[this.props.game.selected]]}
+          backImage={this.state.images[this.props.game.selected]}
           onClick={this.startThisGame}
           onChange={this.handleChange}
           />

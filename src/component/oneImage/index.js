@@ -31,7 +31,6 @@ class OneImage extends React.Component{
 
 const mapStateToProps = (state, props) => {
   return {
-    flip: props.flip,
     classes: props.classes
   }
 }

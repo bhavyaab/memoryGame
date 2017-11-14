@@ -5,7 +5,7 @@ import {renderIf} from '../../lib/util'
 import BlockImage from '../blockImage'
 import OneImage from '../oneImage'
 
-
+import generateCombination from '../../lib/gameUtil.js'
 import {startGame, updateGame, endGame} from '../../action/game-action.js'
 
 class Landing extends React.Component {
@@ -20,7 +20,10 @@ class Landing extends React.Component {
   handelClick(e){
     e.preventDefault()
     this.props.start = true
+    this.props.game.selected = Math.floor(Math.random() * 3)
+    this.props.game.combinationArray = generateCombination()
     this.props.startGame(this.props.game)
+    console.log('game start ', this.props.game)
   }
 
   // <BlockImage />
