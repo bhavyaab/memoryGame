@@ -18,10 +18,13 @@ class BlockImage extends React.Component{
     this.updateThisGame = this.updateThisGame.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
+
+  // setTimeout(() =>{this.setState({timePassed: true})}, 1000);
   startThisGame(e){
     e.preventDefault()
     e.target.parentNode.parentNode.className = 'flipper flip'
-
+    var allImage = document.getElementsByClassName('allImage')[0]
+    console.log('ALLIMAGE ===', allImage);
   }
   updateThisGame(e){
     e.preventDefault()
