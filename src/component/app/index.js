@@ -5,7 +5,6 @@ import {BrowserRouter, Route} from 'react-router-dom'
 
 import createAppStore from '../../lib/store.js'
 import Landing from '../landing'
-import BlockImage from '../blockImage'
 
 const store = createAppStore()
 
