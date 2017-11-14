@@ -10,31 +10,6 @@ width: $standar;
 max-width: 960px;
 }
 
-.blockImage{
-width: $standar * 0.8;
-height: $standar *0.8;
-margin: 10% 0 0 1%;
-position: relative;
-}
-
-.oneImage{
-width: $standar * 0.2;
-height: $standar * 0.2;
-border: 3px solid $border-color;
-border-radius: $broder-radius/2;
-img{
-  height: $standar;
-  width: $standar;
-}
-}
-.center{
-  top: 22.5%;
-  right: 23%;
-  height: 42.5%;
-  width: 42.5%;
-  position: absolute;
-}
-
 
 /**+++++++++++++++++++++++++++++++++++card Flip++++++++++++++++++++++++++++++**/
 .flip-container {

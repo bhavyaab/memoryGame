@@ -1,15 +1,12 @@
-@import "./_vars.scss"
-// 
-// .oneImage{
-// width: $standar * 0.2;
-// height: $standar * 0.2;
-// border: 3px solid $border-color;
-// border-radius: $broder-radius/2;
-// img{
-//   height: $standar;
-//   width: $standar;
-// }
-// }
-// .cards{
-//     position: absolute;
-// }
+// @import "./vars"
+
+.oneImage{
+width: $standar * 0.2;
+height: $standar * 0.2;
+border: 3px solid $border-color;
+border-radius: $broder-radius/2;
+img{
+  height: $standar;
+  width: $standar;
+}
+}

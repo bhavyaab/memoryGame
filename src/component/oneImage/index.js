@@ -8,13 +8,12 @@ class OneImage extends React.Component{
   constructor(props){
     super(props)
     this.state = {}
-    console.log('ONEIMAGE PROPS  ', this.props.flip)
   }
   render(){
     return (
        <div style={this.props.style}
        className="oneImage flip-container">
-       <div className={this.props.flip}
+       <div className={this.props.classes}
        onClick={this.props.onClick}
        onChange={this.props.onChange}>
       		<div className="front">
@@ -32,7 +31,8 @@ class OneImage extends React.Component{
 
 const mapStateToProps = (state, props) => {
   return {
-    flip: props.flip
+    flip: props.flip,
+    classes: props.classes
   }
 }
 

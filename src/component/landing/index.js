@@ -29,7 +29,7 @@ class Landing extends React.Component {
     return (
       <section className='landing'>
           <h1>Landing</h1>
-          <div onClick={this.handelClick}>
+          <div>
           {renderIf(!this.props.game.id,
             <OneImage
               style={{
