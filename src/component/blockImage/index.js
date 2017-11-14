@@ -14,13 +14,10 @@ class BlockImage extends React.Component{
       images : ['../../data/apple.jpg', '../../data/book.jpg', '../../data/flower.jpg', '../../data/tiger.jpg'],
     }
     props.flip = "false";
-    props.card = "flase";
     this.startThisGame = this.startThisGame.bind(this)
     this.updateThisGame = this.updateThisGame.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
-
-  // setTimeout(() =>{this.setState({timePassed: true})}, 1000);
   startThisGame(e){
     e.preventDefault()
     this.props.flip = !this.props.flip
@@ -28,11 +25,11 @@ class BlockImage extends React.Component{
   }
   updateThisGame(picked, e){
     e.preventDefault()
-    console.log('picked == ', picked)
     if(picked == this.props.game.selected) this.props.game.right++
     this.props.game.clicked++;
-    this.props.card = !this.props.card
-    this.props.updateGame(this.props.game);
+    if((this.props.game.clicked > 3) || (this.props.game.right == 3)) return this.props.endGame()
+    e.target.parentNode.parentNode.classList = "flipper flip"
+    this.props.updateGame(this.props.game)
   }
   handleChange(e){
    this.props.updateGame(this.props.game);
@@ -50,7 +47,7 @@ class BlockImage extends React.Component{
               top: `${i * 22.5}%`,
               right: `${j * 22.5}%`,
               position: `absolute`}}
-            classes={classes = this.props.card? "flipper flip":"flipper"}
+            classes={classes = this.props.flip? "flipper flip":"flipper"}
             frontImage={this.state.backCardImage}
             backImage={this.state.images[combinationArray[count]]}
             onChange={this.handleChange}
