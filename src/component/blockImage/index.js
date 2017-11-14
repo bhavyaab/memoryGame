@@ -25,11 +25,11 @@ class BlockImage extends React.Component{
   }
   updateThisGame(picked, e){
     e.preventDefault()
-    if(picked == this.props.game.selected) this.props.game.right++
-    this.props.game.clicked++;
-    if((this.props.game.clicked > 3) || (this.props.game.right == 3)) return this.props.endGame()
+    if(this.props.game.combinationArray[picked] == this.props.game.selected) this.props.game.right++
     e.target.parentNode.parentNode.classList = "flipper flip"
+    this.props.game.clicked++;
     this.props.updateGame(this.props.game)
+    if((this.props.game.clicked > 3) || (this.props.game.right == 3)) return this.props.endGame()
   }
   handleChange(e){
    this.props.updateGame(this.props.game);
@@ -51,7 +51,7 @@ class BlockImage extends React.Component{
             frontImage={this.state.backCardImage}
             backImage={this.state.images[combinationArray[count]]}
             onChange={this.handleChange}
-            onClick={this.updateThisGame.bind(this, combinationArray[count])}
+            onClick={this.updateThisGame.bind(this, count)}
             />
           allImage[count] = element
           count++
