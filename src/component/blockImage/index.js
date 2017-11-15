@@ -1,8 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {renderIf} from '../../lib/util'
 import OneImage from '../oneImage'
+import Counter from '../counter'
 
-// import generateCombination from '../../lib/gameUtil.js'
 import {startGame, updateGame, endGame} from '../../action/game-action.js'
 
 class BlockImage extends React.Component{
@@ -13,16 +14,22 @@ class BlockImage extends React.Component{
       centerImage: '../../data/start.png',
       images : ['../../data/apple.jpg','../../data/book.jpg','../../data/flower.jpg','../../data/tiger.jpg'],
       flip:"false",
-      center: 'false'
+      center: 'false',
+      counterOn: 'false'
     }
     this.startThisGame = this.startThisGame.bind(this)
     this.updateThisGame = this.updateThisGame.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.toggleState = this.toggleState.bind(this)
+  }
+  toggleState(key){
+     const currentState = this.state[key]
+     this.setState({[key] : !currentState})
   }
   startThisGame(e){
     e.preventDefault()
-    var currentState = this.state.flip
-    this.setState({flip: !currentState})
+    this.toggleState('flip')
+    this.state.counterOn? this.toggleState('counterOn'):this.toggleState('center')
     this.props.updateGame(this.props.game);
   }
   updateThisGame(picked, e){
@@ -57,27 +64,30 @@ class BlockImage extends React.Component{
             />
           allImage[count] = element
           count++
+          console.log('flip  ', this.state.flip, ' center == ', this.state.center)
         }
       }
     }
+    var styleCenter = {
+      top: `22.5%`,
+      right: `22.5%`,
+      height: '42.5%',
+      width: '42.5%',
+      position: `absolute`,
+      border: 'none'}
     return (
       <div className="blockImage">
         {allImage}
-        <OneImage
+        {renderIf(this.state.counterOn, <OneImage
           id={combinationArray[count]}
-          style={{
-            top: `22.5%`,
-            right: `22.5%`,
-            height: '42.5%',
-            width: '42.5%',
-            position: `absolute`,
-            border: 'none'}}
+          style={styleCenter}
           classes={classes = !this.state.center? "flipper flip":"flipper"}
           frontImage={this.state.centerImage}
           backImage={this.state.images[this.props.game.selected]}
           onClick={this.startThisGame}
           onChange={this.handleChange}
-          />
+          />)}
+          {renderIf(!this.state.counterOn, <Counter val={20} style={styleCenter}/>)}
       </div>
     )
   }
