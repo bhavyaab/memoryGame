@@ -5,6 +5,7 @@ import OneImage from '../oneImage'
 import Counter from '../counter'
 
 import {startGame, updateGame, endGame} from '../../action/game-action.js'
+import {counterUpdate} from '../../action/counter-action.js'
 
 class BlockImage extends React.Component{
   constructor(props){
@@ -41,7 +42,12 @@ class BlockImage extends React.Component{
     if((this.props.game.clicked > 3) || (this.props.game.right == 3)) return this.props.endGame()
   }
   handleChange(e){
-   this.props.updateGame(this.props.game);
+   this.props.updateGame(this.props.game)
+  }
+  flipBack(){
+    this.toggleState('counterOn')
+    this.toggleState('flip')
+    this.toggleState('card')
   }
   render(){
     var allImage = []
@@ -64,7 +70,6 @@ class BlockImage extends React.Component{
             />
           allImage[count] = element
           count++
-          console.log('flip  ', this.state.flip, ' center == ', this.state.center)
         }
       }
     }
@@ -87,7 +92,9 @@ class BlockImage extends React.Component{
           onClick={this.startThisGame}
           onChange={this.handleChange}
           />)}
-          {renderIf(!this.state.counterOn, <Counter val={20} style={styleCenter}/>)}
+          {this.props.counter == 1? this.flipBack():console.log('counter = ', this.props.counter)}
+          {renderIf(!this.state.counterOn, <Counter val={10} style={styleCenter}/>)
+          }
       </div>
     )
   }
@@ -97,6 +104,7 @@ class BlockImage extends React.Component{
 const mapStateToProps = (state, props) => {
   return {
     game: state.game,
+    counter: state.counter
   }
 }
 
@@ -104,6 +112,7 @@ const mapDispatchToProp = (dispatch, getState) => {
   return {
     updateGame: (game) => dispatch(updateGame(game)),
     endGame: (game) => dispatch(endGame(game)),
+    counterUpdate: (val) => dispatch(counterUpdate(val))
   }
 }
 

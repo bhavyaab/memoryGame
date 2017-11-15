@@ -10,7 +10,7 @@ import {startGame, updateGame, endGame} from '../../action/game-action.js'
 
 class Landing extends React.Component {
   constructor(props){
-    console.log('LANDING PROPS', props);
+    // console.log('LANDING PROPS', props);
     super(props)
     this.state = {}
     this.props.start = false

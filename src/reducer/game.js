@@ -11,7 +11,7 @@ let initialState =  {
 
 export default (state=initialState, action) => {
   let {type, payload} = action
-  console.log('__REDUCER__', {...state, ...payload})
+  // console.log('__REDUCER__', {...state, ...payload})
   switch (type) {
   case 'START_GAME':
     return {...state, ...payload}

@@ -5,21 +5,22 @@ import {counterUpdate} from '../../action/counter-action.js'
 class Counter extends React.Component {
   constructor (props) {
     super(props);
-    this.state = { counter : props.val }
+    this.state = { counter : props.counter }
   }
 
   render() {
-    // var x = this;
-    var { counter } = this.props.counterUpdate();
+    var x = this;
+    var { counter } = this.props;
     setTimeout(function() {
       if (counter > 0) {
-        this.props.counterUpdate(counter - 1);
+        counter = counter - 1
+        x.props.counterUpdate(counter)
       }
     }, 1000);
     return (
       <div className="counter">
       <ul>
-        <li>{counter}</li>
+        <li>{this.props.counter}</li>
         <li>Count down begins!!</li>
       </ul>
       </div>
@@ -28,15 +29,13 @@ class Counter extends React.Component {
 }
 const mapStateToProps = (state, props) => {
   return {
-    val: props.val,
+    counter: state.counter
   }
 }
 
 const mapDispatchToProp = (dispatch, getState) => {
   return {
-    // counterStart: (val) => dispatch(counterStart(val)),
     counterUpdate: (val) => dispatch(counterUpdate(val)),
-    // counterEnd: (val) => dispatch(counterEnd(val)),
   }
 }
 
