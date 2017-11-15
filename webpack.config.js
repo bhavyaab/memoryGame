@@ -30,7 +30,7 @@ module.exports = {
   },
   devtool: production ? undefined : 'eval',
   output: {
-    path: `${__dirname}/doc`,
+    path: `${__dirname}/build`,
     filename: 'bundle.js',
     publicPath: process.env.CDN_URL,
   },

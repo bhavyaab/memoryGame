@@ -11,13 +11,16 @@
       }
     }
   },
+  "homepage": "http://bhavyaab.github.io/memoryGame",
   "scripts": {
     "start": "electron .",
     "build": "webpack -d && npm run watch",
     "watch": "webpack-dev-server --content-base src/ --inline --hot --port 8000 --color",
     "build:prod": "webpack -p && cp src/index.html build/index.html",
     "test": "jest --coverage",
-    "test-watch": "jest --watchAll"
+    "test-watch": "jest --watchAll",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [
     "reactjs",
