@@ -17,13 +17,13 @@ class Counter extends React.Component {
         x.props.counterUpdate(counter)
       }, 1000)
     } else{
-      x.props.counterEnd('nn')
+      x.props.counterEnd()
     }
     return (
       <div className="counter">
       <ul>
-        <li>{this.props.counter}</li>
-        <li>Count down begins!!</li>
+        <li>{(typeof(this.props.counter) == 'number' )? this.props.counter: ''}</li>
+        <li>{(typeof(this.props.counter) == 'number' )? this.props.message: ''}</li>
       </ul>
       </div>
     )

@@ -1,12 +1,11 @@
 import generateCombination from '../lib/gameUtil.js'
-import Game from '../lib/gameUtil.js'
 
 let initialState =  {
   score: 0,
   clicked: 0,
   right: 0,
-  selected: 0,
-  combinationArray: [],
+  selected: Math.floor(Math.random() * 3),
+  combinationArray: generateCombination(),
 }
 
 export default (state=initialState, action) => {
@@ -14,6 +13,7 @@ export default (state=initialState, action) => {
   // console.log('__REDUCER__', {...state, ...payload})
   switch (type) {
   case 'START_GAME':
+    console.log('new game')
     return {...state, ...payload}
   case 'UPDATE_GAME':
     return {...state, payload}

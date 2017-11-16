@@ -29,9 +29,9 @@ class BlockImage extends React.Component{
   }
   startThisGame(e){
     e.preventDefault()
+    this.props.startGame()
     this.toggleState('flip')
     this.state.counterOn? this.toggleState('counterOn'):this.toggleState('center')
-    this.props.updateGame(this.props.game)
   }
   updateThisGame(picked, e){
     e.preventDefault()
@@ -39,7 +39,12 @@ class BlockImage extends React.Component{
     e.target.parentNode.parentNode.classList = 'flipper flip'
     this.props.game.clicked++
     this.props.updateGame(this.props.game)
-    if((this.props.game.clicked > 3) || (this.props.game.right == 3)) return this.props.endGame()
+    if((this.props.game.clicked > 3) || (this.props.game.right == 3)) {
+      this.props.endGame()
+      this.startThisGame(e)
+      this.toggleState('counterOn')
+      this.flipBack()
+    }
   }
   handleChange(e){
     this.props.updateGame(this.props.game)
@@ -94,7 +99,7 @@ class BlockImage extends React.Component{
           onChange={this.handleChange}
           />)}
           {this.props.counter == 0? this.flipBack():console.log('counter = ', this.props.counter)}
-          {renderIf(!this.state.counterOn, <Counter val={10} style={styleCenter}/>)
+          {renderIf(!this.state.counterOn, <Counter message={'countdown begins!'} style={styleCenter}/>)
           }
       </div>
     )
@@ -111,6 +116,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProp = (dispatch, getState) => {
   return {
+    startGame: (game) => dispatch(startGame(game)),
     updateGame: (game) => dispatch(updateGame(game)),
     endGame: (game) => dispatch(endGame(game)),
     counterUpdate: (val) => dispatch(counterUpdate(val)),
