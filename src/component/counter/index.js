@@ -1,22 +1,24 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {counterUpdate} from '../../action/counter-action.js'
+import {counterUpdate, counterEnd} from '../../action/counter-action.js'
 
 class Counter extends React.Component {
   constructor (props) {
-    super(props);
+    super(props)
     this.state = { counter : props.counter }
   }
 
   render() {
-    var x = this;
-    var { counter } = this.props;
-    setTimeout(function() {
-      if (counter > 0) {
+    var x = this
+    var { counter } = this.props
+    if(counter > 0){
+      setTimeout(function() {
         counter = counter - 1
         x.props.counterUpdate(counter)
-      }
-    }, 1000);
+      }, 1000)
+    } else{
+      x.props.counterEnd('nn')
+    }
     return (
       <div className="counter">
       <ul>
@@ -29,13 +31,14 @@ class Counter extends React.Component {
 }
 const mapStateToProps = (state, props) => {
   return {
-    counter: state.counter
+    counter: state.counter,
   }
 }
 
 const mapDispatchToProp = (dispatch, getState) => {
   return {
     counterUpdate: (val) => dispatch(counterUpdate(val)),
+    counterEnd: (val) => dispatch(counterEnd(val)),
   }
 }
 
