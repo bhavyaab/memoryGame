@@ -1,1 +1,124 @@
-a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:"";content:none}table{border-collapse:collapse;border-spacing:0}html{max-height:100%;max-width:100%}body{background-color:#cbfec4;width:100%;max-width:960px}@media screen and (min-width:960px){body{max-width:960px;margin-left:calc(50% - 480px)}}.oneImage{width:20%;height:20%;border:3px solid #dc9400;border-radius:2.5px}.oneImage img{height:100%;width:100%}.blockImage{width:80%;height:80%;margin:10% 0 0 1%;position:relative}.blockImage .counter{top:22.5%;right:22.5%;height:42.5%;width:42.5%;position:absolute;border:none;background-color:#000;border-radius:5%;color:gold}.blockImage .counter ul{text-align:center;font-size:1em}.blockImage .counter ul li{margin-top:45%}.blockImage .counter ul li:first-child{font-size:3em}.flip-container{perspective:1000px}.flipper{transition:.6s;transform-style:preserve-3d;position:relative}.back,.front{backface-visibility:hidden;position:absolute;top:0;left:0}.front{z-index:2;transform:rotateY(0deg)}.back,.flipper.flip{transform:rotateY(180deg)}
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+html {
+  max-height: 100%;
+  max-width: 100%; }
+
+body {
+  background-color: #cbfec4;
+  width: 100%;
+  max-width: 960px; }
+
+@media screen and (min-width: 960px) {
+  body {
+    max-width: 960px;
+    margin-left: calc(50% - 480px); } }
+
+.oneImage {
+  width: 20%;
+  height: 20%;
+  border: 3px solid #dc9400;
+  border-radius: 2.5px; }
+  .oneImage img {
+    height: 100%;
+    width: 100%; }
+
+.blockImage {
+  width: 80%;
+  height: 80%;
+  margin: 10% 0 0 1%;
+  position: relative; }
+  .blockImage .counter {
+    top: 22.5%;
+    right: 22.5%;
+    height: 42.5%;
+    width: 42.5%;
+    position: absolute;
+    border: none;
+    background-color: #000;
+    border-radius: 5%;
+    color: #FFD700; }
+    .blockImage .counter ul {
+      text-align: center;
+      font-size: 1em; }
+      .blockImage .counter ul li {
+        margin-top: 45%; }
+      .blockImage .counter ul li:first-child {
+        font-size: 3em; }
+
+/**+++++++++++++++++++++++++++++++++++card Flip++++++++++++++++++++++++++++++**/
+.flip-container {
+  perspective: 1000px; }
+
+/* flip speed goes here */
+.flipper {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative; }
+
+/* hide back of pane during swap */
+.front, .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+/* front pane, placed above back */
+.front {
+  z-index: 2;
+  /* for firefox 31 */
+  transform: rotateY(0deg); }
+
+/* back, initially hidden pane */
+.back {
+  transform: rotateY(180deg); }
+
+.flipper.flip {
+  transform: rotateY(180deg); }
+
+/**+++++++++++++++++++++++++++++++++++card Flip++++++++++++++++++++++++++++++**/
