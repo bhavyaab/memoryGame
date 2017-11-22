@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 export default (state=5, action) => {
   let {type, payload} = action

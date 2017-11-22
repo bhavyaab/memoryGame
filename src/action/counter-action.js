@@ -1,11 +1,6 @@
 'use strict'
 
-
-export const counterUpdate = (val) => ({
+export const updateCounter = (val) => ({
   type: 'COUNTER_UPDATE',
-  payload: val,
-})
-export const counterEnd = (val) => ({
-  type: 'COUNTER_ENDS',
   payload: val,
 })
