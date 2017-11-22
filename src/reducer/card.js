@@ -3,7 +3,8 @@
 let initialState = {
   flip:"false",
   center: 'true',
-  counterOn: 'false'
+  counterOn: 'false',
+  gameOver: 'false',
 }
 
 export default (state=initialState, action) => {
@@ -22,6 +23,12 @@ export default (state=initialState, action) => {
        state.flip = !state.flip
        state.center = !state.center
        state.counterOn = !state.counterOn
+       return state
+    case 'CARD_END':
+       state.flip = !state.flip
+       state.gameOver = !state.gameOver
+       return state
+       case 'CARD_RESET':
        return state
     default:
        return state

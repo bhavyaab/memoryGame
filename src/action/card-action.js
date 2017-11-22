@@ -11,8 +11,12 @@ export const cardFlip = (val) => ({
   payload: val,
 })
 
-
 export const cardToggle = (val) => ({
   type: 'CARD_TOGGLE',
+  payload: val,
+})
+
+export const cardEnd = (val) => ({
+  type: 'CARD_END',
   payload: val,
 })

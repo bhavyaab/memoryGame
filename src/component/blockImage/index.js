@@ -3,10 +3,10 @@ import {connect} from 'react-redux'
 import {renderIf} from '../../lib/util'
 import OneImage from '../oneImage'
 import Counter from '../counter'
+import Message from '../message'
 
-// import { updateCounter} from '../../action/counter-action.js'
-import { cardStart, cardFlip, cardToggle} from '../../action/card-action.js'
-import {startMe, startGame, updateGame, endGame} from '../../action/game-action.js'
+import { cardStart } from '../../action/card-action.js'
+import {startMe, updateMe, gameReset } from '../../action/game-action.js'
 
 class BlockImage extends React.Component{
   constructor(props){
@@ -27,11 +27,8 @@ class BlockImage extends React.Component{
   }
   updateThisGame(picked, e){
     e.preventDefault()
-    if(picked == this.props.game.selected) this.props.game.right++
     e.target.parentNode.parentNode.classList = "flipper flip"
-    this.props.game.clicked++;
-    this.props.updateGame(this.props.game)
-    if((this.props.game.clicked > 3) || (this.props.game.right == 3)) return this.props.endGame()
+    this.props.updateGame(this.props.game, picked)
   }
   handleChange(e){
    this.props.updateGame(this.props.game)
@@ -83,8 +80,12 @@ class BlockImage extends React.Component{
           onChange={this.handleChange}
           />)}
           {this.props.counter == 1? this.props.cardStart(this.props.card):console.log('counter = ', this.props.counter)}
-          {renderIf(!this.props.card.counterOn, <Counter style={styleCenter}/>)
-          }
+          {renderIf(!this.props.card.counterOn, <Counter style={styleCenter}/>)}
+          {renderIf(!this.props.card.gameOver,
+            <Message message="Game Over!!"
+                      style={styleCenter}
+                      action={{message: 'click to restart!'}}
+                      />)}
       </div>
     )
   }
@@ -102,12 +103,9 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProp = (dispatch, getState) => {
   return {
     startGame: (game, card) => dispatch(startMe(game, card)),
-    updateGame: (game) => dispatch(updateGame(game)),
-    endGame: (game) => dispatch(endGame(game)),
-    updateCounter: (counter) => dispatch( updateCounter(counter)),
+    updateGame: (game, picked) => dispatch(updateMe(game, picked)),
+    gameReset: (game) => dispatch(gameReset(game)),
     cardStart: (card) => dispatch(cardStart(card)),
-    cardToggle: (card) => dispatch(cardToggle(card)),
-    cardFlip: (card) => dispatch(cardFlip(card)),
   }
 }
 
