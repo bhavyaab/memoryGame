@@ -16,3 +16,12 @@ export const endGame = (game) => ({
   type: 'END_GAME',
   payload: {},
 })
+
+
+
+export function startMe(game, card){
+  return dispatch => {
+    dispatch({type: 'START_GAME', payload: game})
+    dispatch({ type: 'CARD_TOGGLE', payload: card})
+  }
+}
