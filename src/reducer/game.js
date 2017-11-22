@@ -11,9 +11,11 @@ let initialState =  {
 
 export default (state=initialState, action) => {
   let {type, payload} = action
-  console.log('__REDUCER__', {...state, ...payload})
+  // console.log(type,  ' ========  ', state, payload)
   switch (type) {
   case 'START_GAME':
+    state.selected =  Math.floor(Math.random() * 3)
+    state.combinationArray = generateCombination()
     return {...state, ...payload}
   case 'UPDATE_GAME':
     return {...state, payload}

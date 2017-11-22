@@ -3,8 +3,10 @@ import {connect} from 'react-redux'
 import {renderIf} from '../../lib/util'
 import OneImage from '../oneImage'
 import Counter from '../counter'
+import Message from '../message'
 
-import {startGame, updateGame, endGame} from '../../action/game-action.js'
+import { cardStart } from '../../action/card-action.js'
+import {startMe, updateMe, gameReset } from '../../action/game-action.js'
 
 class BlockImage extends React.Component{
   constructor(props){
@@ -13,35 +15,23 @@ class BlockImage extends React.Component{
       backCardImage: '../../data/cardBack.jpg',
       centerImage: '../../data/start.png',
       images : ['../../data/apple.jpg','../../data/book.jpg','../../data/flower.jpg','../../data/tiger.jpg'],
-      flip:"false",
-      center: 'false',
-      counterOn: 'false'
     }
     this.startThisGame = this.startThisGame.bind(this)
     this.updateThisGame = this.updateThisGame.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.toggleState = this.toggleState.bind(this)
   }
-  toggleState(key){
-     const currentState = this.state[key]
-     this.setState({[key] : !currentState})
-  }
+
   startThisGame(e){
     e.preventDefault()
-    this.toggleState('flip')
-    this.state.counterOn? this.toggleState('counterOn'):this.toggleState('center')
-    this.props.updateGame(this.props.game);
+    this.props.startGame(this.props.game, this.props.card)
   }
   updateThisGame(picked, e){
     e.preventDefault()
-    if(picked == this.props.game.selected) this.props.game.right++
     e.target.parentNode.parentNode.classList = "flipper flip"
-    this.props.game.clicked++;
-    this.props.updateGame(this.props.game)
-    if((this.props.game.clicked > 3) || (this.props.game.right == 3)) return this.props.endGame()
+    this.props.updateGame(this.props.game, picked)
   }
   handleChange(e){
-   this.props.updateGame(this.props.game);
+   this.props.updateGame(this.props.game)
   }
   render(){
     var allImage = []
@@ -50,13 +40,16 @@ class BlockImage extends React.Component{
     var element, classes
     for(var i = 0; i < 4; i++){
       for(var j = 0; j < 4; j ++){
-        if(!(((i == 1) && (j == 1)) || ((i == 1) && (j == 2)) || ((i == 2) && (j == 1)) || ((i == 2) && (j == 2)))){
+        if(!(((i == 1) && (j == 1)) ||
+            ((i == 1) && (j == 2)) ||
+            ((i == 2) && (j == 1)) ||
+            ((i == 2) && (j == 2)))){
           element = <OneImage
             style={{
               top: `${i * 22.5}%`,
               right: `${j * 22.5}%`,
               position: `absolute`}}
-            classes={classes = !this.state.flip? "flipper flip":"flipper"}
+            classes={classes = !this.props.card.flip? "flipper flip":"flipper"}
             frontImage={this.state.backCardImage}
             backImage={this.state.images[combinationArray[count]]}
             onChange={this.handleChange}
@@ -64,7 +57,6 @@ class BlockImage extends React.Component{
             />
           allImage[count] = element
           count++
-          console.log('flip  ', this.state.flip, ' center == ', this.state.center)
         }
       }
     }
@@ -78,16 +70,22 @@ class BlockImage extends React.Component{
     return (
       <div className="blockImage">
         {allImage}
-        {renderIf(this.state.counterOn, <OneImage
+        {renderIf(this.props.card.counterOn, <OneImage
           id={combinationArray[count]}
           style={styleCenter}
-          classes={classes = !this.state.center? "flipper flip":"flipper"}
+          classes={classes = !this.props.card.center? "flipper flip":"flipper"}
           frontImage={this.state.centerImage}
           backImage={this.state.images[this.props.game.selected]}
           onClick={this.startThisGame}
           onChange={this.handleChange}
           />)}
-          {renderIf(!this.state.counterOn, <Counter val={20} style={styleCenter}/>)}
+          {this.props.counter == 1? this.props.cardStart(this.props.card):console.log('counter = ', this.props.counter)}
+          {renderIf(!this.props.card.counterOn, <Counter style={styleCenter}/>)}
+          {renderIf(!this.props.card.gameOver,
+            <Message message="Game Over!!"
+                      style={styleCenter}
+                      action={{message: 'click to restart!'}}
+                      />)}
       </div>
     )
   }
@@ -97,13 +95,17 @@ class BlockImage extends React.Component{
 const mapStateToProps = (state, props) => {
   return {
     game: state.game,
+    counter: state.counter,
+    card: state.card
   }
 }
 
 const mapDispatchToProp = (dispatch, getState) => {
   return {
-    updateGame: (game) => dispatch(updateGame(game)),
-    endGame: (game) => dispatch(endGame(game)),
+    startGame: (game, card) => dispatch(startMe(game, card)),
+    updateGame: (game, picked) => dispatch(updateMe(game, picked)),
+    gameReset: (game) => dispatch(gameReset(game)),
+    cardStart: (card) => dispatch(cardStart(card)),
   }
 }
 

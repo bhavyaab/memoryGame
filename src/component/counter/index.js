@@ -1,25 +1,24 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {counterUpdate} from '../../action/counter-action.js'
+import { updateCounter} from '../../action/counter-action.js'
+import { cardStart, cardFlip, cardToggle} from '../../action/card-action.js'
 
 class Counter extends React.Component {
   constructor (props) {
     super(props);
-    this.state = { counter : props.val }
+    this.state = { counter : props.counter }
   }
 
   render() {
-    // var x = this;
-    var { counter } = this.props.counterUpdate();
+    var x = this;
+    var { counter } = this.props;
     setTimeout(function() {
-      if (counter > 0) {
-        this.props.counterUpdate(counter - 1);
-      }
+      if( counter > 0) x.props.updateCounter(counter - 1)
     }, 1000);
     return (
       <div className="counter">
       <ul>
-        <li>{counter}</li>
+        <li>{this.props.counter}</li>
         <li>Count down begins!!</li>
       </ul>
       </div>
@@ -28,15 +27,14 @@ class Counter extends React.Component {
 }
 const mapStateToProps = (state, props) => {
   return {
-    val: props.val,
+    counter: state.counter
   }
 }
 
 const mapDispatchToProp = (dispatch, getState) => {
   return {
-    // counterStart: (val) => dispatch(counterStart(val)),
-    counterUpdate: (val) => dispatch(counterUpdate(val)),
-    // counterEnd: (val) => dispatch(counterEnd(val)),
+     updateCounter: (counter) => dispatch(updateCounter(counter)),
+     // cardflip: (card) => dispatch(cardFlip(card))
   }
 }
 
