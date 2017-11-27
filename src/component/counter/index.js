@@ -5,19 +5,19 @@ import { cardStart, cardFlip, cardToggle} from '../../action/card-action.js'
 
 class Counter extends React.Component {
   constructor (props) {
-    super(props);
+    super(props)
     this.state = { counter : props.counter }
   }
 
   render() {
-    var x = this;
-    var { counter } = this.props;
+    var x = this
+    var { counter } = this.props
     setTimeout(function() {
       if( counter > 0) x.props.updateCounter(counter - 1)
-    }, 1000);
+    }, 1000)
     return (
-      <div className="counter">
-      <ul>
+      <div className="cover">
+      <ul className="over">
         <li>{this.props.counter}</li>
         <li>Count down begins!!</li>
       </ul>
@@ -27,13 +27,13 @@ class Counter extends React.Component {
 }
 const mapStateToProps = (state, props) => {
   return {
-    counter: state.counter
+    counter: state.counter,
   }
 }
 
 const mapDispatchToProp = (dispatch, getState) => {
   return {
-     updateCounter: (counter) => dispatch(updateCounter(counter)),
+    updateCounter: (counter) => dispatch(updateCounter(counter)),
      // cardflip: (card) => dispatch(cardFlip(card))
   }
 }

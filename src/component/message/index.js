@@ -4,19 +4,20 @@ import { gameReset } from '../../action/game-action.js'
 
 class Message extends React.Component {
   constructor (props) {
-    super(props);
+    super(props)
     this.state = { }
     this.handleClick = this.handleClick.bind(this)
   }
- handleClick(e){
-   e.preventDefault()
-   console.log('log me clicked')
-   this.props.gameReset()
- }
+  handleClick(e){
+    e.preventDefault()
+    console.log('log me clicked')
+    this.props.gameReset()
+  }
   render() {
     return (
-      <div >
-      <ul onClick={this.handelClick} style={this.props.style}>
+      <div className="cover">
+      <ul className="over"
+      onClick={this.handelClick}>
         <li>{this.props.message}</li>
           <li style={{cursor: 'pointer'}} >{this.props.action.message}</li>
       </ul>
@@ -26,7 +27,7 @@ class Message extends React.Component {
 }
 const mapStateToProps = (state, props) => {
   return {
-    game: state.game
+    game: state.game,
   }
 }
 
