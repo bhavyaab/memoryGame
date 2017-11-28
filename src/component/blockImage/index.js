@@ -14,7 +14,7 @@ class BlockImage extends React.Component{
     this.state = {
       backCardImage: '../../image/cardBack.jpg',
       centerImage: '../../image/start.png',
-      images : ['../../image/apple','../../image/book.jpg','../../image/flower.jpg','../../image/tiger.jpg'],
+      images : ['../../image/apple.jpg','../../image/book.jpg','../../image/flower.jpg','../../image/tiger.jpg'],
     }
     this.startThisGame = this.startThisGame.bind(this)
     this.updateThisGame = this.updateThisGame.bind(this)
@@ -29,6 +29,7 @@ class BlockImage extends React.Component{
   updateThisGame(picked, e){
     e.preventDefault()
     e.target.parentNode.parentNode.classList = 'flipper flip'
+    e.target.parentNode.parentNode.parentNode.classList = 'oneImage flip-container Z'
     this.props.updateGame(this.props.game, picked)
   }
   handleChange(e){
@@ -49,7 +50,7 @@ class BlockImage extends React.Component{
             ((i == 1) && (j == 2)) ||
             ((i == 2) && (j == 1)) ||
             ((i == 2) && (j == 2)))){
-          element = <OneImage
+          element =<OneImage
             style={{
               top: `${i * 22.5}%`,
               left: `${j * 22.5}%`,
@@ -77,7 +78,7 @@ class BlockImage extends React.Component{
       <div className="blockImage">
         {allImage}
         {renderIf(this.props.card.counterOn,
-          <div className={(this.props.counter > 0)? 'cover':'coverZ'}>
+          <div className={(this.props.counter > 0)? 'cover':'cover Z'}>
           <OneImage
           style={styleCenter}
           id={combinationArray[count]}

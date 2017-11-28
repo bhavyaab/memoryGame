@@ -11,19 +11,16 @@ class OneImage extends React.Component{
   }
   render(){
     return (
-       <div style={this.props.style}
-       className="oneImage flip-container">
-         <div className={this.props.classes}
-         onClick={this.props.onClick}
-         onChange={this.props.onChange}>
-        		<div className="front">
-              <img src={this.props.frontImage}/>
-        		</div>
-        		<div className="back">
-              <img src={this.props.backImage}/>
-        		</div>
-         </div >
-       </div>
+    <div style={this.props.style} className="oneImage flip-container">
+       <div className={this.props.classes} onClick={this.props.onClick} onChange={this.props.onChange}>
+          <div className="front">
+            <img src={this.props.frontImage}/>
+          </div>
+          <div className="back">
+            <img src={this.props.backImage}/>
+          </div>
+       </div >
+    </div>
     )
   }
 }
