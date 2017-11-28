@@ -1,0 +1,32 @@
+.cover{
+  height: 88%;
+  width: 88%;
+  position: absolute;
+}
+.coverZ{
+  height: 88%;
+  width: 88%;
+  position: absolute;
+  z-index: -4;
+}
+
+.over{
+    top: 25.5%;
+    left: 25.5%;
+    height: 48%;
+    width: 48%;
+    position: absolute;
+    background: $black;
+    border-radius: 5%;
+    color: $golden;
+    z-index: 1;
+    li{
+      text-align: center;
+      margin-top: 30%;
+      padding: 5%;
+    }
+
+    li:first-child{
+      font-size: 2em;
+    }
+}

@@ -1,13 +1,13 @@
-'use strict';
+'use strict'
 
-require('dotenv').config({ path: `${__dirname}/.dev.env` });
-const production = process.env.NODE_ENV === 'production';
+require('dotenv').config({ path: `${__dirname}/.dev.env` })
+const production = process.env.NODE_ENV === 'production'
 
-const {DefinePlugin, EnvironmentPlugin} = require('webpack');
-const HtmlPlugin = require('html-webpack-plugin');
-const CleanPlugin = require('clean-webpack-plugin');
-const UglifyPlugin = require('uglifyjs-webpack-plugin');
-const ExtractPlugin = require('extract-text-webpack-plugin');
+const {DefinePlugin, EnvironmentPlugin} = require('webpack')
+const HtmlPlugin = require('html-webpack-plugin')
+const CleanPlugin = require('clean-webpack-plugin')
+const UglifyPlugin = require('uglifyjs-webpack-plugin')
+const ExtractPlugin = require('extract-text-webpack-plugin')
 
 let plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
@@ -16,7 +16,7 @@ let plugins = [
   new DefinePlugin({
     __DEBUG__: JSON.stringify(!production),
   }),
-];
+]
 
 if (production) {
   // plugins = plugins.concat([ new CleanPlugin(), new UglifyPlugin() ])
@@ -32,7 +32,7 @@ module.exports = {
   output: {
     path: `${__dirname}/build`,
     filename: 'bundle.js',
-    publicPath: process.env.CDN_URL,
+    // publicPath: process.env.CDN_URL,
   },
   module: {
     rules: [
@@ -68,7 +68,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 6000,
-              name: `${__dirname}/image/[name].[ext]`,
+              name: `${__dirname}/src/image/[name].[ext]`,
             },
           },
         ],
@@ -79,10 +79,10 @@ module.exports = {
         use: [
           {
             loader: 'file-loader',
-            options: { name: `${__dirname}/audio/[name].[ext]` },
+            options: { name: `${__dirname}/src/audio/[name].[ext]` },
           },
         ],
       },
     ],
   },
-};
+}

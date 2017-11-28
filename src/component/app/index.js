@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       <section>
         <Provider store={store}>
-          <BrowserRouter>
+          <BrowserRouter  basename='http://bhavyaab.github.io/memoryGame'>
             <section>
               <Route exact path='/' component={Landing} />
             </section>

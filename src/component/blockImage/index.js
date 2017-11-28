@@ -12,13 +12,14 @@ class BlockImage extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      backCardImage: '../../data/cardBack.jpg',
-      centerImage: '../../data/start.png',
-      images : ['../../data/apple.jpg','../../data/book.jpg','../../data/flower.jpg','../../data/tiger.jpg'],
+      backCardImage: '../../image/cardBack.jpg',
+      centerImage: '../../image/start.png',
+      images : ['../../image/apple','../../image/book.jpg','../../image/flower.jpg','../../image/tiger.jpg'],
     }
     this.startThisGame = this.startThisGame.bind(this)
     this.updateThisGame = this.updateThisGame.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.resetAll = this.resetAll.bind(this)
   }
 
   startThisGame(e){
@@ -27,11 +28,15 @@ class BlockImage extends React.Component{
   }
   updateThisGame(picked, e){
     e.preventDefault()
-    e.target.parentNode.parentNode.classList = "flipper flip"
+    e.target.parentNode.parentNode.classList = 'flipper flip'
     this.props.updateGame(this.props.game, picked)
   }
   handleChange(e){
-   this.props.updateGame(this.props.game)
+    this.props.updateGame(this.props.game)
+  }
+  resetAll(e){
+    e.preventDefault()
+    this.props.gameReset()
   }
   render(){
     var allImage = []
@@ -47,9 +52,9 @@ class BlockImage extends React.Component{
           element = <OneImage
             style={{
               top: `${i * 22.5}%`,
-              right: `${j * 22.5}%`,
+              left: `${j * 22.5}%`,
               position: `absolute`}}
-            classes={classes = !this.props.card.flip? "flipper flip":"flipper"}
+            classes={classes = !this.props.card.flip? 'flipper flip':'flipper'}
             frontImage={this.state.backCardImage}
             backImage={this.state.images[combinationArray[count]]}
             onChange={this.handleChange}
@@ -61,30 +66,35 @@ class BlockImage extends React.Component{
       }
     }
     var styleCenter = {
-      top: `22.5%`,
-      right: `22.5%`,
-      height: '42.5%',
-      width: '42.5%',
+      top: `25.5%`,
+      left: `25.5%`,
+      height: '48%',
+      width: '48%',
       position: `absolute`,
-      border: 'none'}
+      border: 'none',
+    }
     return (
       <div className="blockImage">
         {allImage}
-        {renderIf(this.props.card.counterOn, <OneImage
-          id={combinationArray[count]}
+        {renderIf(this.props.card.counterOn,
+          <div className={(this.props.counter > 0)? 'cover':'coverZ'}>
+          <OneImage
           style={styleCenter}
-          classes={classes = !this.props.card.center? "flipper flip":"flipper"}
+          id={combinationArray[count]}
+          classes={classes = !this.props.card.center? 'flipper flip':'flipper'}
           frontImage={this.state.centerImage}
           backImage={this.state.images[this.props.game.selected]}
           onClick={this.startThisGame}
           onChange={this.handleChange}
-          />)}
-          {this.props.counter == 1? this.props.cardStart(this.props.card):console.log('counter = ', this.props.counter)}
+          /></div>)}
+          {this.props.counter == 1? this.props.cardStart(this.props.card):console.log()}
           {renderIf(!this.props.card.counterOn, <Counter style={styleCenter}/>)}
-          {renderIf(!this.props.card.gameOver,
+          {renderIf((this.props.game.clicked > 3),
             <Message message="Game Over!!"
                       style={styleCenter}
                       action={{message: 'click to restart!'}}
+                      onClick={this.resetAll}
+                      onChange={this.handleChange}
                       />)}
       </div>
     )
@@ -96,7 +106,7 @@ const mapStateToProps = (state, props) => {
   return {
     game: state.game,
     counter: state.counter,
-    card: state.card
+    card: state.card,
   }
 }
 

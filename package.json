@@ -1,5 +1,5 @@
 {
-  "name": "reactjs",
+  "name": "memoryGame",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,10 +13,12 @@
   },
   "homepage": "http://bhavyaab.github.io/memoryGame",
   "scripts": {
-    "start": "electron .",
-    "build": "webpack -d && npm run watch",
+    "electron": "electron .",
+    "start": "node server.js",
+    "build": "webpack -d",
     "watch": "start chrome http://localhost:8000/ && webpack-dev-server --content-base src/ --inline --hot --port 8000 --color",
     "build:prod": "webpack -p && cp src/index.html build/index.html",
+    "heroku-postbuild": "webpack -p --progress",
     "test": "jest --coverage",
     "test-watch": "jest --watchAll",
     "predeploy": "npm run build",
