@@ -8,7 +8,7 @@ const HtmlPlugin = require('html-webpack-plugin')
 const CleanPlugin = require('clean-webpack-plugin')
 const UglifyPlugin = require('uglifyjs-webpack-plugin')
 const ExtractPlugin = require('extract-text-webpack-plugin')
-
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 let plugins = [
   new EnvironmentPlugin(['NODE_ENV']),
   new ExtractPlugin('bundle.css'),
@@ -16,6 +16,10 @@ let plugins = [
   new DefinePlugin({
     __DEBUG__: JSON.stringify(!production),
   }),
+  new CopyWebpackPlugin([{
+    from: `${__dirname}/src/image/`,
+    to: `${__dirname}/image/`,
+  }]),
 ]
 
 if (production) {
@@ -68,7 +72,7 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 6000,
-              name: `${__dirname}/src/image/[name].[ext]`,
+              name: `${__dirname}/image/[name].[ext]`,
             },
           },
         ],

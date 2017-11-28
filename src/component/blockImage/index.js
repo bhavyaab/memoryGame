@@ -14,7 +14,7 @@ class BlockImage extends React.Component{
     this.state = {
       backCardImage: '../../image/cardBack.jpg',
       centerImage: '../../image/start.png',
-      images : ['../../image/apple','../../image/book.jpg','../../image/flower.jpg','../../image/tiger.jpg'],
+      images : ['../../image/apple.jpg','../../image/book.jpg','../../image/flower.jpg','../../image/tiger.jpg'],
     }
     this.startThisGame = this.startThisGame.bind(this)
     this.updateThisGame = this.updateThisGame.bind(this)
