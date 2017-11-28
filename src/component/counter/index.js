@@ -34,7 +34,6 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProp = (dispatch, getState) => {
   return {
     updateCounter: (counter) => dispatch(updateCounter(counter)),
-     // cardflip: (card) => dispatch(cardFlip(card))
   }
 }
 

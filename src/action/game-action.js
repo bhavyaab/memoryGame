@@ -1,10 +1,9 @@
 'use strict'
 
-import uuid from 'uuid/v1'
 
 export const startGame = (game) => ({
   type: 'START_GAME',
-  payload: {...game, id:uuid() },
+  payload: {...game },
 })
 
 export const updateGame = (game) => ({
@@ -26,7 +25,7 @@ export function startMe(game, card){
 
 export function updateMe(game, picked){
   if(picked == game.selected) game.right++
-  game.clicked++;
+  game.clicked++
   if((game.clicked > 3) || (game.right == 3)) return dispatch => {
     dispatch({type: 'END_GAME', payload: game})
     dispatch({type: 'CARD_END', payload: ''})
@@ -36,8 +35,7 @@ export function updateMe(game, picked){
 
 export function gameReset(game){
   return dispatch => {
-    dispatch({type: 'START_GAME' })
     dispatch({ type: 'CARD_RESET'})
-    dispatch({ type: 'COUNTER_UPDATE'})
+    dispatch({type: 'START_GAME', payload: game})
   }
 }

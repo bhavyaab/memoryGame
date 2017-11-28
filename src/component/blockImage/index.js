@@ -19,7 +19,7 @@ class BlockImage extends React.Component{
     this.startThisGame = this.startThisGame.bind(this)
     this.updateThisGame = this.updateThisGame.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    console.log('prpos == ', this.props)
+    this.resetAll = this.resetAll.bind(this)
   }
 
   startThisGame(e){
@@ -33,6 +33,10 @@ class BlockImage extends React.Component{
   }
   handleChange(e){
     this.props.updateGame(this.props.game)
+  }
+  resetAll(e){
+    e.preventDefault()
+    this.props.gameReset()
   }
   render(){
     var allImage = []
@@ -83,12 +87,14 @@ class BlockImage extends React.Component{
           onClick={this.startThisGame}
           onChange={this.handleChange}
           /></div>)}
-          {this.props.counter == 1? this.props.cardStart(this.props.card):console.log('counter = ', this.props.counter)}
+          {this.props.counter == 1? this.props.cardStart(this.props.card):console.log()}
           {renderIf(!this.props.card.counterOn, <Counter style={styleCenter}/>)}
           {renderIf(!this.props.card.gameOver,
             <Message message="Game Over!!"
                       style={styleCenter}
                       action={{message: 'click to restart!'}}
+                      onClick={this.resetAll}
+                      onChange={this.handleChange}
                       />)}
       </div>
     )
