@@ -24,7 +24,7 @@ export function startMe(game, card){
 }
 
 export function updateMe(game, picked){
-  if(picked == game.selected) game.right++
+  picked == game.selected? game.right++:game.wrong++
   game.clicked++
   if((game.clicked > 3) || (game.right === 3)) return dispatch => {
     dispatch({type: 'UPDATE_GAME', payload: game})

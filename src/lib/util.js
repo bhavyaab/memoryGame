@@ -4,6 +4,10 @@ export const classToggler = (option) => Object.keys(option).filter(key => !!opti
 
 // x == this
 export const toggleState = (key, x) => {
-   const currentState = x.state[key]
-   x.setState({key : !currentState})
- }
+  const currentState = x.state[key]
+  x.setState({key : !currentState})
+}
+ 
+export const log = (act, msg) => {
+  __DEBUG__ ? console.log(act, msg) : ''
+}

@@ -16,7 +16,13 @@ export const cardToggle = (val) => ({
   payload: val,
 })
 
+export const cardLookup = (val) => ({
+  type: 'CARD_LOOKUP',
+  payload: val,
+})
+
 export const cardEnd = (val) => ({
   type: 'CARD_END',
   payload: val,
 })
+

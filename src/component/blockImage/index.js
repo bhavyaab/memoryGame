@@ -5,7 +5,7 @@ import OneImage from '../oneImage'
 import Counter from '../counter'
 import Message from '../message'
 
-import { cardStart } from '../../action/card-action.js'
+import { cardStart, cardLookup } from '../../action/card-action.js'
 import {startMe, updateMe, gameReset } from '../../action/game-action.js'
 
 class BlockImage extends React.Component{
@@ -21,15 +21,15 @@ class BlockImage extends React.Component{
     this.handleChange = this.handleChange.bind(this)
     this.resetAll = this.resetAll.bind(this)
   }
-
   startThisGame(e){
     e.preventDefault()
     this.props.startGame(this.props.game, this.props.card)
   }
   updateThisGame(picked, e){
     e.preventDefault()
+    if( (this.props.lookup[e.target.id]) || (e.target.id == '') ) return this.props.lookup
+    this.props.cardLookup(e.target.id)
     e.target.parentNode.parentNode.classList = 'flipper flip'
-    e.target.parentNode.parentNode.parentNode.classList = 'oneImage flip-container Z'
     this.props.updateGame(this.props.game, picked)
   }
   handleChange(e){
@@ -43,7 +43,7 @@ class BlockImage extends React.Component{
     var allImage = []
     var combinationArray = this.props.game.combinationArray
     var count = 0
-    var element, classes
+    var element, classes, z
     for(var i = 0; i < 4; i++){
       for(var j = 0; j < 4; j ++){
         if(!(((i == 1) && (j == 1)) ||
@@ -54,8 +54,9 @@ class BlockImage extends React.Component{
             style={{
               top: `${i * 22.5}%`,
               left: `${j * 22.5}%`,
-              position: `absolute`}}
-            classes={classes = !this.props.card.flip? 'flipper flip':'flipper'}
+            }}
+            id={ i + '' + j }
+            classes={!this.props.card.flip? 'flipper flip':'flipper'}
             frontImage={this.state.backCardImage}
             backImage={this.state.images[combinationArray[count]]}
             onChange={this.handleChange}
@@ -71,7 +72,6 @@ class BlockImage extends React.Component{
       left: `25.5%`,
       height: '48%',
       width: '48%',
-      position: `absolute`,
       border: 'none',
     }
     return (
@@ -108,6 +108,7 @@ const mapStateToProps = (state, props) => {
     game: state.game,
     counter: state.counter,
     card: state.card,
+    lookup: state.card.lookup,
   }
 }
 
@@ -117,6 +118,7 @@ const mapDispatchToProp = (dispatch, getState) => {
     updateGame: (game, picked) => dispatch(updateMe(game, picked)),
     gameReset: (game) => dispatch(gameReset(game)),
     cardStart: (card) => dispatch(cardStart(card)),
+    cardLookup: (id) => dispatch(cardLookup(id)),
   }
 }
 

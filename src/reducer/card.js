@@ -5,6 +5,7 @@ let initialState = {
   center: 'true',
   counterOn: 'false',
   gameOver: 'false',
+  lookup: {},
 }
 
 export default (state=initialState, action) => {
@@ -22,6 +23,9 @@ export default (state=initialState, action) => {
     state.center = !state.center
     state.counterOn = !state.counterOn
     return state
+  case 'CARD_LOOKUP':
+    state.lookup[payload] = true
+    return state
   case 'CARD_END':
     state.flip = !state.flip
     state.gameOver = !state.gameOver
@@ -32,6 +36,7 @@ export default (state=initialState, action) => {
       center: 'false',
       counterOn: 'true',
       gameOver: 'true',
+      lookup: {},
     }
     return state
   default:

@@ -8,7 +8,6 @@ import Landing from '../landing'
 
 const store = createAppStore()
 
-console.log('__DEBUG__', __DEBUG__)
 class App extends React.Component {
   constructor(props){
     super(props)

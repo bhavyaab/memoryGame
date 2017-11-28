@@ -7,7 +7,7 @@
     "globals": {
       "__DEBUG__": false,
       "process.env": {
-        "NODE_ENV": "testing"
+        "NODE_ENV": "production"
       }
     }
   },
