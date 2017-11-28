@@ -37,5 +37,6 @@ export function gameReset(game){
   return dispatch => {
     dispatch({ type: 'CARD_RESET'})
     dispatch({type: 'START_GAME', payload: game})
+    dispatch({type: 'COUNTER_UPDATE', payload: 5})
   }
 }
