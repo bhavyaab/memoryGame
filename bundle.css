@@ -59,6 +59,34 @@ body {
     max-width: 960px;
     margin-left: calc(50% - 480px); } }
 
+.cover {
+  height: 88%;
+  width: 88%;
+  position: absolute; }
+
+.coverZ {
+  height: 88%;
+  width: 88%;
+  position: absolute;
+  z-index: -4; }
+
+.over {
+  top: 25.5%;
+  left: 25.5%;
+  height: 48%;
+  width: 48%;
+  position: absolute;
+  background: #000;
+  border-radius: 5%;
+  color: #FFD700;
+  z-index: 1; }
+  .over li {
+    text-align: center;
+    margin-top: 30%;
+    padding: 5%; }
+  .over li:first-child {
+    font-size: 2em; }
+
 .oneImage {
   width: 20%;
   height: 20%;
@@ -73,23 +101,6 @@ body {
   height: 80%;
   margin: 10% 0 0 1%;
   position: relative; }
-  .blockImage .counter {
-    top: 22.5%;
-    right: 22.5%;
-    height: 42.5%;
-    width: 42.5%;
-    position: absolute;
-    border: none;
-    background-color: #000;
-    border-radius: 5%;
-    color: #FFD700; }
-    .blockImage .counter ul {
-      text-align: center;
-      font-size: 1em; }
-      .blockImage .counter ul li {
-        margin-top: 45%; }
-      .blockImage .counter ul li:first-child {
-        font-size: 3em; }
 
 /**+++++++++++++++++++++++++++++++++++card Flip++++++++++++++++++++++++++++++**/
 .flip-container {
