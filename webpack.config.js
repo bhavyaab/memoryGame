@@ -18,7 +18,7 @@ let plugins = [
   }),
   new CopyWebpackPlugin([{
     from: `${__dirname}/src/image/`,
-    to: `${__dirname}/image/`,
+    to: `${__dirname}/build/image/`,
   }]),
 ]
 
