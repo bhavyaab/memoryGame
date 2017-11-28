@@ -21,7 +21,7 @@ export default (state=initialState, action) => {
   case 'UPDATE_GAME':
     return {...state, payload}
   case 'END_GAME':
-    state = initialState
+    state = initialState 
     return {...state}
   default:
     return state

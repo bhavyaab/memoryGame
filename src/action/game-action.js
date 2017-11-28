@@ -26,8 +26,8 @@ export function startMe(game, card){
 export function updateMe(game, picked){
   if(picked == game.selected) game.right++
   game.clicked++
-  if((game.clicked > 3) || (game.right == 3)) return dispatch => {
-    dispatch({type: 'END_GAME', payload: game})
+  if((game.clicked > 3) || (game.right === 3)) return dispatch => {
+    dispatch({type: 'UPDATE_GAME', payload: game})
     dispatch({type: 'CARD_END', payload: ''})
   }
   return dispatch => {dispatch({type: 'UPDATE_GAME', payload: game})}
@@ -35,6 +35,7 @@ export function updateMe(game, picked){
 
 export function gameReset(game){
   return dispatch => {
+    dispatch({type: 'END_GAME'})
     dispatch({ type: 'CARD_RESET'})
     dispatch({type: 'START_GAME', payload: game})
     dispatch({type: 'COUNTER_UPDATE', payload: 5})

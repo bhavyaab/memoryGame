@@ -89,7 +89,7 @@ class BlockImage extends React.Component{
           /></div>)}
           {this.props.counter == 1? this.props.cardStart(this.props.card):console.log()}
           {renderIf(!this.props.card.counterOn, <Counter style={styleCenter}/>)}
-          {renderIf(!this.props.card.gameOver,
+          {renderIf((this.props.game.clicked > 3),
             <Message message="Game Over!!"
                       style={styleCenter}
                       action={{message: 'click to restart!'}}
