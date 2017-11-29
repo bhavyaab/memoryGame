@@ -1,0 +1,17 @@
+.landing{
+  width: 100%;
+  max-width: 1240px;
+}
+
+.game{
+  width: 80%;
+  height: 80%;
+  margin-left: 10%;
+  margin-top: 15%;
+}
+
+@media screen and (min-width: 1240px) {
+  .landing{
+    margin-left: calc(50% - 620px)    
+  }
+}

@@ -5,7 +5,7 @@
   "main": "index.js",
   "jest": {
     "globals": {
-      "__DEBUG__": false,
+      "__DEBUG__": true,
       "process.env": {
         "NODE_ENV": "production"
       }
