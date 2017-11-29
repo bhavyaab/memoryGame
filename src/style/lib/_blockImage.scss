@@ -1,8 +1,10 @@
 
 .blockImage{
-width: $standar;
-height: $standar;
+width: $standar * 0.6;
+height: $standar * 0.6;
 position: relative;
+margin-left: 20%;
+margin-top: 30%;
 }
 
 /**+++++++++++++++++++++++++++++++++++card Flip++++++++++++++++++++++++++++++**/
