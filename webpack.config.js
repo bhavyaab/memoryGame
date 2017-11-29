@@ -36,7 +36,7 @@ module.exports = {
   output: {
     path: `${__dirname}/build`,
     filename: 'bundle.js',
-    // publicPath: process.env.CDN_URL,
+    publicPath: process.env.CDN_URL,
   },
   module: {
     rules: [

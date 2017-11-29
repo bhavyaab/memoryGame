@@ -3,6 +3,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {startGame, updateGame, endGame} from '../../action/game-action.js'
 
+import Eyes from '../eyes'
 
 class OneImage extends React.Component{
   constructor(props){
@@ -11,10 +12,13 @@ class OneImage extends React.Component{
   }
   render(){
     return (
-    <div style={this.props.style} className='oneImage flip-container'>
+    <div style={this.props.style} ref='one' className='oneImage flip-container'>
        <div className={this.props.classes} onClick={this.props.onClick} onChange={this.props.onChange}>
           <div className="front">
-            <img id={this.props.id} src={this.props.frontImage}/>
+            <Eyes id={this.props.id} 
+            x={this.props.x}
+            y={this.props.y}
+            background={this.props.frontImage}/>
           </div>
           <div className="back">
             <img src={this.props.backImage}/>

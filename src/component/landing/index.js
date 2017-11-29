@@ -25,12 +25,11 @@ class Landing extends React.Component {
   render(){
     return (
       <section className='landing'>
-          <h1>Landing</h1>
-          <div>
+          <div className="game">
           <BlockImage
           onClick={this.handelClick}
           flip={this.props.start}/>
-            </div>
+          </div>
       </section>
     )
   }

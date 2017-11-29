@@ -1,9 +1,11 @@
 import React from 'react'
+import ReactDom from 'react-dom'
 import {connect} from 'react-redux'
 import {renderIf} from '../../lib/util'
 import OneImage from '../oneImage'
 import Counter from '../counter'
 import Message from '../message'
+import Eyes from '../eyes'
 
 import { cardStart, cardLookup } from '../../action/card-action.js'
 import {startMe, updateMe, gameReset } from '../../action/game-action.js'
@@ -20,6 +22,7 @@ class BlockImage extends React.Component{
     this.updateThisGame = this.updateThisGame.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.resetAll = this.resetAll.bind(this)
+    this.eyeMove = this.eyeMove.bind(this)
   }
   startThisGame(e){
     e.preventDefault()
@@ -39,6 +42,25 @@ class BlockImage extends React.Component{
     e.preventDefault()
     this.props.gameReset()
   }
+  eyeMove(e){
+    e.preventDefault()
+    var x, y,rad,rot, eye
+    console.log('eye == ', eye, ' offset', e.nativeEvent.offsetX, this, ' x ', x, '  y==', y)
+    console.log('EYE ==', eye)
+    eye = ReactDom.findDOMNode(this).getElementsByClassName('eye')
+    eye.forEach(function(eye){
+      x = (e.nativeEvent.offsetX) + (eye.offsetWidth / 2)
+      y = (e.nativeEvent.offsetY) + (eye.offsetHeight / 2)
+      rad = Math.atan2(event.pageX - x, event.pageY - y)
+      rot = (rad * (180 / Math.PI) * -1) + 180
+      
+    
+      eye.style.transform = 'rotate(' + rot + 'deg)'
+    })
+  }
+  // componentWillMount() {
+  //   ReactDom.findDOMNode(this).addEventListener('move', this.eyeMove)
+  // }
   render(){
     var allImage = []
     var combinationArray = this.props.game.combinationArray
@@ -56,6 +78,7 @@ class BlockImage extends React.Component{
               left: `${j * 22.5}%`,
             }}
             id={ i + '' + j }
+            
             classes={!this.props.card.flip? 'flipper flip':'flipper'}
             frontImage={this.state.backCardImage}
             backImage={this.state.images[combinationArray[count]]}
@@ -75,7 +98,7 @@ class BlockImage extends React.Component{
       border: 'none',
     }
     return (
-      <div className="blockImage">
+      <div className="blockImage" onMouseMove={this.eyeMove} ref='block'>
         {allImage}
         {renderIf(this.props.card.counterOn,
           <div className={(this.props.counter > 0)? 'cover':'cover Z'}>
