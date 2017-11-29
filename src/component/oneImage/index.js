@@ -19,10 +19,10 @@ class OneImage extends React.Component{
        <div className={this.props.classes} onClick={this.props.onClick} onChange={this.props.onChange}>
           <div className="front">
             <img id={this.props.id} src={this.props.frontImage}/>
-            {renderIf(this.props.notCenter, <Eye />)}
           </div>
           <div className="back">
             <img src={this.props.backImage}/>
+            {renderIf(this.props.notCenter, <Eye />)}
           </div>
        </div>
     </div>
