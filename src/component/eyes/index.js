@@ -7,6 +7,7 @@ class Eyes extends React.Component {
   constructor (props) {
     super(props)
     this.state = { }
+<<<<<<< HEAD
     // this.eyeMove = this.eyeMove.bind(this)
   }
 
@@ -47,6 +48,17 @@ class Eyes extends React.Component {
     var rot = (rad * (180 / Math.PI) * -1) + 180
     console.log('MOUSE ',props, rad)
     eye.style.transform = 'rotate(' + rot + 'deg)'
+=======
+  }
+
+  componentWillReceiveProps(props){
+    var eye = this.refs.eye.getBoundingClientRect()
+    var x = (eye.left) + (eye.width / 2)
+    var y = (eye.top) + (eye.height / 2)
+    var rad = Math.atan2(event.pageX - x, event.pageY - y)
+    var rot = (rad * (180 / Math.PI) * -1) + 180
+    this.refs.eye.style.transform = 'rotate(' + rot + 'deg)'
+>>>>>>> 8d5f9a4af74e8419c92fe5bf978949d433360d19
     this.refs.eye2.style.transform = 'rotate(' + rot + 'deg)'
   }
   render() {

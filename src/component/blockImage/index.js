@@ -68,6 +68,7 @@ class BlockImage extends React.Component{
               left: `${j * 22.5}%`,
             }}
             id={ i + '' + j }
+            notCenter='true'
             classes={!this.props.card.flip? 'flipper flip':'flipper'}
             frontImage={this.state.backCardImage}
             backImage={this.state.images[combinationArray[count]]}
@@ -87,7 +88,7 @@ class BlockImage extends React.Component{
       border: 'none',
     }
     return (
-      <div className="blockImage" onMouseMove={this.eyeMove}>
+      <div className="blockImage" >
         {allImage}
         {renderIf(this.props.card.counterOn,
           <div className={(this.props.counter > 0)? 'cover':'cover Z'}>

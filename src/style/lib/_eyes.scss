@@ -2,16 +2,22 @@
   position: relative;
   display: inline-block;
   border-radius: 50%;
-  height: 30px;
-  width: 30px;
+  // height: 30px;
+  // width: 30px;
+  height: 4vw;
+  width: 4vw;
   background: #CCC;
 }
 .eye:after { /*pupil*/
   position: absolute;
-  bottom: 17px;
-  right: 10px;
-  width: 10px;
-  height: 10px;
+  // bottom: 17px;
+  // right: 10px;
+  // width: 10px;
+  // height: 10px;
+  top: 5%;
+  right: 8%;
+  width: 35%;
+  height: 35%;
   background: #000;
   border-radius: 50%;
   content: " ";
@@ -20,4 +26,7 @@
 .eyeContainer{
     height: $standar;
     width: $standar;
+    position: absolute;
+    top:40%;
+    left: 40%;
 }

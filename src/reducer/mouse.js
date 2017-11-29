@@ -6,7 +6,6 @@ let initialState = {
 
 export default (state=initialState, action) =>{
   let {type, payload} = action
-  console.log(action)
   switch (type) {
   case 'FOLLOW_MOUSE':
     state = payload
