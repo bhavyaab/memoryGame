@@ -1,14 +1,15 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import {connect} from 'react-redux'
+import { followMouse } from '../../action/mouse-action.js'
 
 class Eyes extends React.Component {
   constructor (props) {
     super(props)
     this.state = { }
-    this.eyeMove = this.eyeMove.bind(this)
+    // this.eyeMove = this.eyeMove.bind(this)
   }
-  
+
   // eyeMove(e){
   //   e.preventDefault()
   //   var eye = this.refs.eye
@@ -25,30 +26,42 @@ class Eyes extends React.Component {
   //   // })
   //   eye.style.transform = 'rotate(' + rot + 'deg)'
   // }
-  eyeMove(e){
-    e.preventDefault()
-    var eye = this.refs.eye
-    var x = (this.props.x) + (eye.offsetWidth / 2)
-    var y = (this.props.y) + (eye.offsetHeight / 2)
-    console.log('eye == ', eye, ' offset', x, this)
-    var rad = Math.atan2(event.pageX - x, event.pageY - y)
-    var rot = (rad * (180 / Math.PI) * -1) + 180
-    eye.style.transform = 'rotate(' + rot + 'deg)'
-  }
+  // eyeMove(e){
+  //   e.preventDefault()
+  //   var eye = this.refs.eye
+  //   var x = (this.props.x) + (eye.offsetWidth / 2)
+  //   var y = (this.props.y) + (eye.offsetHeight / 2)
+  //   console.log('eye == ', eye, ' offset', x, this)
+  //   var rad = Math.atan2(event.pageX - x, event.pageY - y)
+  //   var rot = (rad * (180 / Math.PI) * -1) + 180
+  //   eye.style.transform = 'rotate(' + rot + 'deg)'
+  // }
   // componentWillMount() {
   //   ReactDom.findDOMNode(this).addEventListener('onMouseMove', this.eyeMove)
   // }
+  componentWillReceiveProps(props){
+    var eye = this.refs.eye
+    var x = (props.mouse.offsetX) + (eye.offsetWidth / 2)
+    var y = (props.mouse.offsetY) + (eye.offsetHeight / 2)
+    var rad = Math.atan2(event.pageX - x, event.pageY - y)
+    var rot = (rad * (180 / Math.PI) * -1) + 180
+    console.log('MOUSE ',props, rad)
+    eye.style.transform = 'rotate(' + rot + 'deg)'
+    this.refs.eye2.style.transform = 'rotate(' + rot + 'deg)'
+  }
   render() {
     return (
-      <div className='eyeContainer' ref='eyes'>
+      <div className='eyeContainer' >
        <div className='eye' ref="eye"></div>
-       <div className='eye' ref="eye"></div>
+       <div className='eye' ref="eye2"></div>
       </div>
     )
   }
 }
 const mapStateToProps = (state, props) => {
-  return {}
+  return {
+    mouse: state.mouse,
+  }
 }
 
 const mapDispatchToProp = (dispatch, getState) => {

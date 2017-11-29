@@ -9,6 +9,7 @@ import Eyes from '../eyes'
 
 import { cardStart, cardLookup } from '../../action/card-action.js'
 import {startMe, updateMe, gameReset } from '../../action/game-action.js'
+import { followMouse } from '../../action/mouse-action.js'
 
 class BlockImage extends React.Component{
   constructor(props){
@@ -44,23 +45,12 @@ class BlockImage extends React.Component{
   }
   eyeMove(e){
     e.preventDefault()
-    var x, y,rad,rot, eye
-    console.log('eye == ', eye, ' offset', e.nativeEvent.offsetX, this, ' x ', x, '  y==', y)
-    console.log('EYE ==', eye)
-    eye = ReactDom.findDOMNode(this).getElementsByClassName('eye')
-    eye.forEach(function(eye){
-      x = (e.nativeEvent.offsetX) + (eye.offsetWidth / 2)
-      y = (e.nativeEvent.offsetY) + (eye.offsetHeight / 2)
-      rad = Math.atan2(event.pageX - x, event.pageY - y)
-      rot = (rad * (180 / Math.PI) * -1) + 180
-      
-    
-      eye.style.transform = 'rotate(' + rot + 'deg)'
-    })
+    this.props.mouse = {
+      offsetX: e.nativeEvent.offsetX,
+      offsetY: e.nativeEvent.offsetY,
+    }
+    this.props.followMouse(this.props.mouse)
   }
-  // componentWillMount() {
-  //   ReactDom.findDOMNode(this).addEventListener('move', this.eyeMove)
-  // }
   render(){
     var allImage = []
     var combinationArray = this.props.game.combinationArray
@@ -78,7 +68,6 @@ class BlockImage extends React.Component{
               left: `${j * 22.5}%`,
             }}
             id={ i + '' + j }
-            
             classes={!this.props.card.flip? 'flipper flip':'flipper'}
             frontImage={this.state.backCardImage}
             backImage={this.state.images[combinationArray[count]]}
@@ -98,7 +87,7 @@ class BlockImage extends React.Component{
       border: 'none',
     }
     return (
-      <div className="blockImage" onMouseMove={this.eyeMove} ref='block'>
+      <div className="blockImage" onMouseMove={this.eyeMove}>
         {allImage}
         {renderIf(this.props.card.counterOn,
           <div className={(this.props.counter > 0)? 'cover':'cover Z'}>
@@ -132,6 +121,7 @@ const mapStateToProps = (state, props) => {
     counter: state.counter,
     card: state.card,
     lookup: state.card.lookup,
+    mouse: state.mouse,
   }
 }
 
@@ -142,6 +132,7 @@ const mapDispatchToProp = (dispatch, getState) => {
     gameReset: (game) => dispatch(gameReset(game)),
     cardStart: (card) => dispatch(cardStart(card)),
     cardLookup: (id) => dispatch(cardLookup(id)),
+    followMouse: (offsetX, offsetY) => dispatch(followMouse(offsetX, offsetY)),
   }
 }
 
