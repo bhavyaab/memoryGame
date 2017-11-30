@@ -4,12 +4,12 @@ max-width: $standar;
 }
 body {
     width: $standar;
-    // background-color: $color-main;
-    background: url('/image/jungle2.jpg') no-repeat center center fixed;
-   -webkit-background-size: cover;
-   -moz-background-size: cover;
-   -o-background-size: cover;
-   background-size: cover;
+    background-color: $color-main;
+   //  background: url('/image/background.jpg') no-repeat center center fixed;
+   // -webkit-background-size: cover;
+   // -moz-background-size: cover;
+   // -o-background-size: cover;
+   // background-size: cover;
 }
 
 //

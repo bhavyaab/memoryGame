@@ -3,11 +3,53 @@
 .oneImage{
 width: 20%;
 height: 20%;
-border: 3px solid $border-color;
-// border-radius: $broder-radius/2;
+border-radius: $broder-radius/2;
 position: absolute;
 img{
+  height: 100%;
+  width: 100%;
+    border-radius: 5%;
+}
+.cards{
   height: $standar;
   width: $standar;
 }
 }
+.back, .front {
+  border-radius: 5%;
+}
+/**+++++++++++++++++++++++++++++++++++card Flip++++++++++++++++++++++++++++++**/
+.flip-container {
+	perspective: 1000px;
+}
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+
+.flipper.flip{
+  transform: rotateY(180deg);
+}
+/**+++++++++++++++++++++++++++++++++++card Flip++++++++++++++++++++++++++++++**/
