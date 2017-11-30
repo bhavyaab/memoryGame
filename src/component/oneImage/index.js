@@ -4,10 +4,6 @@ import {connect} from 'react-redux'
 
 import {renderIf} from '../../lib/util'
 
-import Eye from '../eyes'
-
-import Eyes from '../eyes'
-
 class OneImage extends React.Component{
   constructor(props){
     super(props)
@@ -22,7 +18,6 @@ class OneImage extends React.Component{
           </div>
           <div className="back">
             <img src={this.props.backImage}/>
-            {renderIf(this.props.notCenter, <Eye />)}
           </div>
        </div>
     </div>

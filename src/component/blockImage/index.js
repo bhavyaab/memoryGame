@@ -5,11 +5,10 @@ import {renderIf} from '../../lib/util'
 import OneImage from '../oneImage'
 import Counter from '../counter'
 import Message from '../message'
-import Eyes from '../eyes'
 
 import { cardStart, cardLookup } from '../../action/card-action.js'
 import {startMe, updateMe, gameReset } from '../../action/game-action.js'
-import { followMouse } from '../../action/mouse-action.js'
+// import { followMouse } from '../../action/mouse-action.js'
 
 class BlockImage extends React.Component{
   constructor(props){
@@ -133,7 +132,7 @@ const mapDispatchToProp = (dispatch, getState) => {
     gameReset: (game) => dispatch(gameReset(game)),
     cardStart: (card) => dispatch(cardStart(card)),
     cardLookup: (id) => dispatch(cardLookup(id)),
-    followMouse: (offsetX, offsetY) => dispatch(followMouse(offsetX, offsetY)),
+    // followMouse: (offsetX, offsetY) => dispatch(followMouse(offsetX, offsetY)),
   }
 }
 
