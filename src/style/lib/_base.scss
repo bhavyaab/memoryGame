@@ -1,15 +1,18 @@
-@import "./_vars.scss";
-
 html{
 max-height: $standar;
 max-width: $standar;
 }
 body {
-background-color: $color-main;
-width: $standar;
+    width: $standar;
+    // background-color: $color-main;
+    background: url('/image/jungle2.jpg') no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
 }
 
-// 
+//
 // @media screen and (min-width: 960px) {
 //   body{
 //     max-width: 960px;

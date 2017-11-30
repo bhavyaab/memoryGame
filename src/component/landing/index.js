@@ -32,10 +32,13 @@ class Landing extends React.Component {
     }
     this.props.followMouse(this.props.mouse)
   }
+  // <img src="../../image/Cloud-24.png" clasName="aniCloud1"/>
   render(){
     return (
       <section className='landing' onMouseMove={this.onMouseMove}>
           <div>
+
+           <div className="pajaro">··</div>
           <BlockImage
           onClick={this.handelClick}
           flip={this.props.start}/>

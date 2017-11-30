@@ -30,3 +30,9 @@
     top:40%;
     left: 40%;
 }
+
+@media screen and (max-width: 600px) {
+  .eyeContainer{
+    display: none;
+  }
+}
