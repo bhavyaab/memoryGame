@@ -13,15 +13,12 @@ class Landing extends React.Component {
   constructor(props){
     super(props)
     this.state = {}
-    // this.props.start = false
-    // this.props.game.id?  this.props.start = true: this.props.startGame()
     this.handelClick = this.handelClick.bind(this)
     // this.onMouseMove = this.onMouseMove.bind(this)
   }
 
   handelClick(e){
     e.preventDefault()
-    // this.props.start = true
     this.props.startGame()
   }
   // onMouseMove(e){
@@ -50,7 +47,6 @@ class Landing extends React.Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    // game: state.game,
     // mouse: state.mouse,
   }
 }
@@ -58,8 +54,6 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProp = (dispatch, getState) => {
   return {
     startGame: (game) => dispatch(startGame(game)),
-    // updateGame: (game) => dispatch(updateGame(game)),
-    // endGame: (game) => dispatch(endGame(game)),
     // followMouse: (mouse) => dispatch(followMouse(mouse)),
   }
 }
