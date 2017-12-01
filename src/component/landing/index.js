@@ -32,9 +32,10 @@ class Landing extends React.Component {
     }
     this.props.followMouse(this.props.mouse)
   }
+  // onMouseMove={this.onMouseMove}
   render(){
     return (
-      <section className='landing' onMouseMove={this.onMouseMove}>
+      <section className='landing' >
           <div>
 
           <BlockImage

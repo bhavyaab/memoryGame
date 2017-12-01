@@ -84,7 +84,6 @@ class BlockImage extends React.Component{
       left: `25.5%`,
       height: '48%',
       width: '48%',
-      border: 'none',
     }
     return (
       <div className="blockImage" >
@@ -93,6 +92,7 @@ class BlockImage extends React.Component{
           <div className={(this.props.counter > 0)? 'cover':'cover Z'}>
           <OneImage
           style={styleCenter}
+          circle={{'border-radius': '50%'}}
           id={combinationArray[count]}
           classes={classes = !this.props.card.center? 'flipper flip':'flipper'}
           frontImage={this.state.centerImage}

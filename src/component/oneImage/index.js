@@ -17,10 +17,10 @@ class OneImage extends React.Component{
             onClick={this.props.onClick}
             onChange={this.props.onChange}>
           <div className="front" >
-            <img id={this.props.id} src={this.props.frontImage}/>
+            <img style={this.props.circle} id={this.props.id} src={this.props.frontImage}/>
           </div>
           <div className="back">
-             <img src={this.props.backImage}/>
+             <img style={this.props.circle} src={this.props.backImage}/>
           </div>
        </div>
     </div>
