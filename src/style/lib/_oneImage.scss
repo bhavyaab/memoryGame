@@ -5,11 +5,18 @@ width: 20%;
 height: 20%;
 border-radius: $broder-radius/2;
 position: absolute;
+cursor: pointer;
 img{
   height: 100%;
   width: 100%;
   border-radius: 5%;
   box-shadow: 4px 1px 2px 2px #222125;
+  transition: box-shadow 10ms;
+}
+img:hover{
+  box-shadow: 4px 9px 2px 2px #222125;
+  height: 105%;
+  width: 105%;
 }
 .cards{
   height: $standar;
