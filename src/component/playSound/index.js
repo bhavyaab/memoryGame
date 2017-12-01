@@ -1,5 +1,6 @@
 'use strict'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import {connect} from 'react-redux'
 import { updateGame } from '../../action/game-action.js'
 
@@ -13,38 +14,37 @@ class PlaySound extends React.Component {
     this.muteAudio = this.muteAudio.bind(this)
   }
 
-  playAudio(e){
-    e.preventDefault()
-    // if(this.props.mute) return
-    // this.props.audio.loop = false
-    // this.props.audio.play()
+  playAudio(){
+    if(this.props.mute) return
+    this.props.audio.loop = false
+    this.props.audio.play()
   }
   loopAudio(e){
     e.preventDefault()
-    // if(this.props.mute) return
-    // this.props.audio.loop = true
-    // this.props.audio.play()
+    if(this.props.mute) return
+    this.props.audio.loop = true
+    this.props.audio.play()
   }
   stopAudio(e){
     e.preventDefault()
-    // this.props.audio.pause()
+    this.props.audio.pause()
   }
   muteAudio(e){
     e.preventDefault()
-    // this.props.mute = !this.props.mute
-    // this.props.audio.pause()
+    this.props.mute = !this.props.mute
+    this.props.audio.pause()
     // if(!mute) document.getElementById('soundIcon').src = soundOn
     // if(mute)  document.getElementById('soundIcon').src = soundOff
   }
   componentDidMount() {
-    this.props.audio = React.findDOMNode(this.refs.audio)
-    console.info('audio prop set', this.props.audio)
+    this.props.audio = ReactDOM.findDOMNode(this.refs.audio)
+    // this.props.audio.play()
   }
 
   render() {
     return (
       <audio ref="audio" preload="auto">
-         <source src="this.props.play"></source>
+         <source src={this.props.src}></source>
       </audio>
     )
   }

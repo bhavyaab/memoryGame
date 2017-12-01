@@ -14,15 +14,15 @@ class BlockImage extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      backCardImage: '../../image/cardBack.png',
-      centerImage: '../../image/gaming.png',
-      images : ['../../image/apple.jpg','../../image/book.jpg','../../image/flower.jpg','../../image/tiger.jpg'],
+      backCardImage: '../../image/cards/cardBack.png',
+      centerImage: '../../image/cards/gaming.png',
+      images : ['../../image/cards/apple.jpg','../../image/cards/book.jpg','../../image/cards/flower.jpg','../../image/cards/tiger.jpg'],
     }
     this.startThisGame = this.startThisGame.bind(this)
     this.updateThisGame = this.updateThisGame.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.resetAll = this.resetAll.bind(this)
-    this.eyeMove = this.eyeMove.bind(this)
+    // this.eyeMove = this.eyeMove.bind(this)
   }
   startThisGame(e){
     e.preventDefault()
@@ -42,14 +42,14 @@ class BlockImage extends React.Component{
     e.preventDefault()
     this.props.gameReset()
   }
-  eyeMove(e){
-    e.preventDefault()
-    this.props.mouse = {
-      offsetX: e.nativeEvent.offsetX,
-      offsetY: e.nativeEvent.offsetY,
-    }
-    this.props.followMouse(this.props.mouse)
-  }
+  // eyeMove(e){
+  //   e.preventDefault()
+  //   this.props.mouse = {
+  //     offsetX: e.nativeEvent.offsetX,
+  //     offsetY: e.nativeEvent.offsetY,
+  //   }
+  //   this.props.followMouse(this.props.mouse)
+  // }
   render(){
     var allImage = []
     var combinationArray = this.props.game.combinationArray
