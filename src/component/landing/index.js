@@ -54,7 +54,6 @@ class Landing extends React.Component {
 
 
 const mapStateToProps = (state, props) => {
-  console.log('state', state)
   return {
     // mouse: state.mouse,
     mute: state.sound.mute,
