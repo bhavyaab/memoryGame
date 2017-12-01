@@ -13,25 +13,25 @@ class Landing extends React.Component {
   constructor(props){
     super(props)
     this.state = {}
-    this.props.start = false
-    this.props.game.id?  this.props.start = true: this.props.startGame()
+    // this.props.start = false
+    // this.props.game.id?  this.props.start = true: this.props.startGame()
     this.handelClick = this.handelClick.bind(this)
-    this.onMouseMove = this.onMouseMove.bind(this)
+    // this.onMouseMove = this.onMouseMove.bind(this)
   }
 
   handelClick(e){
     e.preventDefault()
-    this.props.start = true
+    // this.props.start = true
     this.props.startGame()
   }
-  onMouseMove(e){
-    e.preventDefault()
-    this.props.mouse = {
-      offsetX: e.nativeEvent.offsetX,
-      offsetY: e.nativeEvent.offsetY,
-    }
-    this.props.followMouse(this.props.mouse)
-  }
+  // onMouseMove(e){
+  //   e.preventDefault()
+  //   this.props.mouse = {
+  //     offsetX: e.nativeEvent.offsetX,
+  //     offsetY: e.nativeEvent.offsetY,
+  //   }
+  //   this.props.followMouse(this.props.mouse)
+  // }
   // onMouseMove={this.onMouseMove}
   render(){
     return (
@@ -50,17 +50,17 @@ class Landing extends React.Component {
 
 const mapStateToProps = (state, props) => {
   return {
-    game: state.game,
-    mouse: state.mouse,
+    // game: state.game,
+    // mouse: state.mouse,
   }
 }
 
 const mapDispatchToProp = (dispatch, getState) => {
   return {
     startGame: (game) => dispatch(startGame(game)),
-    updateGame: (game) => dispatch(updateGame(game)),
-    endGame: (game) => dispatch(endGame(game)),
-    followMouse: (mouse) => dispatch(followMouse(mouse)),
+    // updateGame: (game) => dispatch(updateGame(game)),
+    // endGame: (game) => dispatch(endGame(game)),
+    // followMouse: (mouse) => dispatch(followMouse(mouse)),
   }
 }
 

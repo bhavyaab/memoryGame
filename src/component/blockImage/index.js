@@ -109,6 +109,13 @@ class BlockImage extends React.Component{
                       onClick={this.resetAll}
                       onChange={this.handleChange}
                       />)}
+          {renderIf((this.props.game.right >= 3),
+            <Message message="You Win!!"
+                      style={styleCenter}
+                      action={{message: 'click to restart!'}}
+                      onClick={this.resetAll}
+                      onChange={this.handleChange}
+                      />)}
       </div>
     )
   }

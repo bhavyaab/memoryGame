@@ -10,13 +10,13 @@ img{
   height: 100%;
   width: 100%;
   border-radius: 5%;
-  box-shadow: 0.25em 0.0625em 0.125em 0.125em #222125;
-  transition: box-shadow 10ms;
+  box-shadow: 0.125em 0.0625em 0.125em 0.0125em #222125;
+  transition: width 10ms;
 }
 img:hover{
-  box-shadow: 0.25em 0.5625em 0.125em 0.125em #222125;
   height: 105%;
   width: 105%;
+  // box-shadow: 0.25em 0.5625em 0.125em 0.125em #222125;
 }
 .cards{
   height: $standar;
@@ -61,3 +61,15 @@ img:hover{
   transform: rotateY(180deg);
 }
 /**+++++++++++++++++++++++++++++++++++card Flip++++++++++++++++++++++++++++++**/
+@media screen and (min-width: 450px) {
+
+  .oneImage{
+  img{
+    box-shadow: 0.25em 0.0625em 0.125em 0.125em #222125;
+    transition: box-shadow 10ms;
+  }
+  img:hover{
+    box-shadow: 0.25em 0.5625em 0.125em 0.125em #222125;
+  }
+}
+}

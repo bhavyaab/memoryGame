@@ -17,6 +17,7 @@
     border-radius: 50%;
     color: $golden;
     z-index: 1;
+    cursor: pointer;
     li{
       text-align: center;
       margin-top: 30%;
@@ -25,5 +26,9 @@
 
     li:first-child{
       font-size: 2em;
+      font-weight: bold;
+    }
+    li:last-child{
+      margin-top: 5%;
     }
 }
