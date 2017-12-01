@@ -1,13 +1,75 @@
 // @import "./vars"
 
 .oneImage{
-width: $standar * 0.2;
-height: $standar * 0.2;
-border: 3px solid $border-color;
+width: 20%;
+height: 20%;
 border-radius: $broder-radius/2;
 position: absolute;
+cursor: pointer;
 img{
+  height: 100%;
+  width: 100%;
+  border-radius: 5%;
+  box-shadow: 0.125em 0.0625em 0.125em 0.0125em #222125;
+  transition: width 10ms;
+}
+img:hover{
+  height: 105%;
+  width: 105%;
+  // box-shadow: 0.25em 0.5625em 0.125em 0.125em #222125;
+}
+.cards{
   height: $standar;
   width: $standar;
+}
+}
+.back, .front {
+  border-radius: 5%;
+}
+/**+++++++++++++++++++++++++++++++++++card Flip++++++++++++++++++++++++++++++**/
+.flip-container {
+	perspective: 1000px;
+}
+/* flip speed goes here */
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* front pane, placed above back */
+.front {
+	z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+
+.flipper.flip{
+  transform: rotateY(180deg);
+}
+/**+++++++++++++++++++++++++++++++++++card Flip++++++++++++++++++++++++++++++**/
+@media screen and (min-width: 450px) {
+
+  .oneImage{
+  img{
+    box-shadow: 0.25em 0.0625em 0.125em 0.125em #222125;
+    transition: box-shadow 10ms;
+  }
+  img:hover{
+    box-shadow: 0.25em 0.5625em 0.125em 0.125em #222125;
+  }
 }
 }

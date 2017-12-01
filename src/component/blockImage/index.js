@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDom from 'react-dom'
 import {connect} from 'react-redux'
 import {renderIf} from '../../lib/util'
 import OneImage from '../oneImage'
@@ -7,19 +8,21 @@ import Message from '../message'
 
 import { cardStart, cardLookup } from '../../action/card-action.js'
 import {startMe, updateMe, gameReset } from '../../action/game-action.js'
+// import { followMouse } from '../../action/mouse-action.js'
 
 class BlockImage extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      backCardImage: '../../image/cardBack.jpg',
-      centerImage: '../../image/start.png',
-      images : ['../../image/apple.jpg','../../image/book.jpg','../../image/flower.jpg','../../image/tiger.jpg'],
+      backCardImage: '../../image/cards/cardBack.png',
+      centerImage: '../../image/cards/gaming.png',
+      images : ['../../image/cards/apple.jpg','../../image/cards/book.jpg','../../image/cards/flower.jpg','../../image/cards/tiger.jpg'],
     }
     this.startThisGame = this.startThisGame.bind(this)
     this.updateThisGame = this.updateThisGame.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.resetAll = this.resetAll.bind(this)
+    // this.eyeMove = this.eyeMove.bind(this)
   }
   startThisGame(e){
     e.preventDefault()
@@ -39,6 +42,14 @@ class BlockImage extends React.Component{
     e.preventDefault()
     this.props.gameReset()
   }
+  // eyeMove(e){
+  //   e.preventDefault()
+  //   this.props.mouse = {
+  //     offsetX: e.nativeEvent.offsetX,
+  //     offsetY: e.nativeEvent.offsetY,
+  //   }
+  //   this.props.followMouse(this.props.mouse)
+  // }
   render(){
     var allImage = []
     var combinationArray = this.props.game.combinationArray
@@ -56,6 +67,7 @@ class BlockImage extends React.Component{
               left: `${j * 22.5}%`,
             }}
             id={ i + '' + j }
+            notCenter='true'
             classes={!this.props.card.flip? 'flipper flip':'flipper'}
             frontImage={this.state.backCardImage}
             backImage={this.state.images[combinationArray[count]]}
@@ -72,15 +84,15 @@ class BlockImage extends React.Component{
       left: `25.5%`,
       height: '48%',
       width: '48%',
-      border: 'none',
     }
     return (
-      <div className="blockImage">
+      <div className="blockImage" >
         {allImage}
         {renderIf(this.props.card.counterOn,
           <div className={(this.props.counter > 0)? 'cover':'cover Z'}>
           <OneImage
           style={styleCenter}
+          circle={{'border-radius': '50%'}}
           id={combinationArray[count]}
           classes={classes = !this.props.card.center? 'flipper flip':'flipper'}
           frontImage={this.state.centerImage}
@@ -92,6 +104,13 @@ class BlockImage extends React.Component{
           {renderIf(!this.props.card.counterOn, <Counter style={styleCenter}/>)}
           {renderIf((this.props.game.clicked > 3),
             <Message message="Game Over!!"
+                      style={styleCenter}
+                      action={{message: 'click to restart!'}}
+                      onClick={this.resetAll}
+                      onChange={this.handleChange}
+                      />)}
+          {renderIf((this.props.game.right >= 3),
+            <Message message="You Win!!"
                       style={styleCenter}
                       action={{message: 'click to restart!'}}
                       onClick={this.resetAll}
@@ -109,6 +128,7 @@ const mapStateToProps = (state, props) => {
     counter: state.counter,
     card: state.card,
     lookup: state.card.lookup,
+    mouse: state.mouse,
   }
 }
 
@@ -119,6 +139,7 @@ const mapDispatchToProp = (dispatch, getState) => {
     gameReset: (game) => dispatch(gameReset(game)),
     cardStart: (card) => dispatch(cardStart(card)),
     cardLookup: (id) => dispatch(cardLookup(id)),
+    // followMouse: (offsetX, offsetY) => dispatch(followMouse(offsetX, offsetY)),
   }
 }
 
