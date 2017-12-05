@@ -15,7 +15,6 @@ class Landing extends React.Component {
     super(props)
     this.state = {}
     this.handelClick = this.handelClick.bind(this)
-    this.soundMute = this.soundMute.bind(this)
     // this.onMouseMove = this.onMouseMove.bind(this)
   }
 
@@ -34,15 +33,13 @@ class Landing extends React.Component {
   // onMouseMove={this.onMouseMove}
   soundMute(e){
     e.preventDefault()
-    this.props.stopAudio(this)
+    this.props.stopAudio()
   }
-  // <PlaySound src="../../audio/loop.mp3"/>
-  // {renderIf(this.props.mute, <img onClick={this.SoundMute} src="../../image/volume-mute2.png"/>)}
-  // {renderIf(!this.props.mute, <img onClick={this.SoundMute} src="../../image/volume-mute.png" />)}
   render(){
     return (
       <section className='landing' >
           <div>
+          <PlaySound src="../../audio/loop.mp3"/>
            <BlockImage
             onClick={this.handelClick}
             flip={this.props.start}/>

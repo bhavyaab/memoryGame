@@ -19,9 +19,11 @@ export const stopAudio = (val) => ({
   type: 'STOP_AUDIO',
   payload: val,
 })
-// export const muteAudio = (val) => ({
-//     // this.props.mute = !this.props.mute
-//     // this.props.audio.pause()
-//     // if(!mute) document.getElementById('soundIcon').src = soundOn
-//     // if(mute)  document.getElementById('soundIcon').src = soundOff
-// })
+export const muteAudio = (val) => ({
+  type: 'MUTE_AUDIO',
+  payload: val,
+    // this.props.mute = !this.props.mute
+    // this.props.audio.pause()
+    // if(!mute) document.getElementById('soundIcon').src = soundOn
+    // if(mute)  document.getElementById('soundIcon').src = soundOff
+})

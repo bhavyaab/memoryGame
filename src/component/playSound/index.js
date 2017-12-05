@@ -3,6 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {connect} from 'react-redux'
 import { updateGame } from '../../action/game-action.js'
+import {renderIf} from '../../lib/util'
 
 class PlaySound extends React.Component {
   constructor (props) {
@@ -38,14 +39,17 @@ class PlaySound extends React.Component {
   }
   componentDidMount() {
     this.props.audio = ReactDOM.findDOMNode(this.refs.audio)
-    // this.props.audio.play()
+    this.props.audio.play()
   }
-
   render() {
     return (
-      <audio ref="audio" preload="auto">
+      <div>
+      <audio ref="audio" preload="auto" onClick={this[this.props.onClick]}>
          <source src={this.props.src}></source>
       </audio>
+      {renderIf(this.props.mute, <img onClick={this.stopAudio} src="../../image/volume-mute2.png"/>)}
+      {renderIf(!this.props.mute, <img onClick={this.stopAudio} src="../../image/volume-mute.png" />)}
+      </div>
     )
   }
 }
