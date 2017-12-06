@@ -87,9 +87,9 @@ class BlockImage extends React.Component{
       height: '48%',
       width: '48%',
     }
+    // <PlaySound name="clickSound" src="../../audio/click.mp3"/>
     return (
       <div className="blockImage" >
-      <PlaySound name="clickSound" src="../../audio/click.mp3"/>
         {allImage}
         {renderIf(this.props.card.counterOn,
           <div className={(this.props.counter > 0)? 'cover':'cover Z'}>
