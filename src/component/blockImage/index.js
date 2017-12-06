@@ -33,7 +33,7 @@ class BlockImage extends React.Component{
     e.preventDefault()
     if( (this.props.lookup[e.target.id]) || (e.target.id == '') ) return this.props.lookup
     this.props.cardLookup(e.target.id)
-    e.target.parentNode.parentNode.classList = 'flipper flip'
+    e.target.parentNode.parentNode.classList.add('flip')
     this.props.updateGame(this.props.game, picked)
   }
   handleChange(e){
