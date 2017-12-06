@@ -5,6 +5,7 @@ import {renderIf} from '../../lib/util'
 import OneImage from '../oneImage'
 import Counter from '../counter'
 import Message from '../message'
+import PlaySound from '../playSound'
 
 import { cardStart, cardLookup } from '../../action/card-action.js'
 import {startMe, updateMe, gameReset } from '../../action/game-action.js'
@@ -67,6 +68,7 @@ class BlockImage extends React.Component{
               left: `${j * 22.5}%`,
             }}
             id={ i + '' + j }
+            key={ i + '' + j }
             notCenter='true'
             classes={!this.props.card.flip? 'flipper flip':'flipper'}
             frontImage={this.state.backCardImage}
@@ -85,6 +87,7 @@ class BlockImage extends React.Component{
       height: '48%',
       width: '48%',
     }
+    // <PlaySound name="clickSound" src="../../audio/click.mp3"/>
     return (
       <div className="blockImage" >
         {allImage}
@@ -92,7 +95,7 @@ class BlockImage extends React.Component{
           <div className={(this.props.counter > 0)? 'cover':'cover Z'}>
           <OneImage
           style={styleCenter}
-          circle={{'border-radius': '50%'}}
+          circle={{'borderRadius': '50%'}}
           id={combinationArray[count]}
           classes={classes = !this.props.card.center? 'flipper flip':'flipper'}
           frontImage={this.state.centerImage}

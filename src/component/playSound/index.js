@@ -3,6 +3,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {connect} from 'react-redux'
 import { updateGame } from '../../action/game-action.js'
+import {renderIf} from '../../lib/util'
+import { loadAudio, stopAudio, muteAudio } from '../../action/sound-action.js'
 
 class PlaySound extends React.Component {
   constructor (props) {
@@ -25,6 +27,10 @@ class PlaySound extends React.Component {
     this.props.audio.loop = true
     this.props.audio.play()
   }
+  volumeControl(e){
+    e.preventDefault()
+    this.props.audio.volume= 0.5
+  }
   stopAudio(e){
     e.preventDefault()
     this.props.audio.pause()
@@ -32,31 +38,42 @@ class PlaySound extends React.Component {
   muteAudio(e){
     e.preventDefault()
     this.props.mute = !this.props.mute
-    this.props.audio.pause()
-    // if(!mute) document.getElementById('soundIcon').src = soundOn
-    // if(mute)  document.getElementById('soundIcon').src = soundOff
+    if(!this.props.mute){
+      document.getElementById('soundIcon').src = '../../image/volume-mute.png'
+      this.props.audio.play()
+    }
+    if(this.props.mute)  {
+      document.getElementById('soundIcon').src = '../../image/volume-mute2.png'
+      this.props.audio.pause()
+    }
   }
   componentDidMount() {
-    this.props.audio = ReactDOM.findDOMNode(this.refs.audio)
-    // this.props.audio.play()
+    this.audio.volume= this.props.volume
+    this.audio.play()
+    this.props.loadAudio({'name':this.props.name,'value':this.audio})
   }
-
   render() {
     return (
-      <audio ref="audio" preload="auto">
+      <div className='playSound'>
+      <audio ref={(audio) => { this.audio = audio } } preload="auto" >
          <source src={this.props.src}></source>
       </audio>
+      </div>
     )
   }
 }
 const mapStateToProps = (state, props) => {
   return {
     mute: state.sound.mute,
+    volume: state.sound.volume,
+    audio : state[props.name],
   }
 }
 
 const mapDispatchToProp = (dispatch, getState) => {
-  return {}
+  return {
+    loadAudio: (audio) => dispatch(loadAudio(audio)),
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProp)(PlaySound)

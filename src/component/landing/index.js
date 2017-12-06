@@ -8,20 +8,26 @@ import PlaySound from '../playSound'
 import generateCombination from '../../lib/gameUtil.js'
 import {startGame, updateGame, endGame} from '../../action/game-action.js'
 import { followMouse } from '../../action/mouse-action.js'
-import { stopAudio, muteAudio } from '../../action/sound-action.js'
+import { mute_Audio, updateSound } from '../../action/sound-action.js'
 
 class Landing extends React.Component {
   constructor(props){
     super(props)
-    this.state = {}
-    this.handelClick = this.handelClick.bind(this)
-    this.soundMute = this.soundMute.bind(this)
+    this.state = {
+    }
+    this.handleClick = this.handleClick.bind(this)
     // this.onMouseMove = this.onMouseMove.bind(this)
+    this.soundMute = this.soundMute.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handelClick(e){
+  handleClick(e){
     e.preventDefault()
     this.props.startGame()
+  }
+  handleChange(e){
+    this.props.updateSound(this.props.sound)
+    console.log(' state src ', this.state.src)
   }
   // onMouseMove(e){
   //   e.preventDefault()
@@ -34,18 +40,15 @@ class Landing extends React.Component {
   // onMouseMove={this.onMouseMove}
   soundMute(e){
     e.preventDefault()
-    this.props.stopAudio(this)
+    this.props.mute_Audio('audioBackround', this.props.sound.mute)
   }
-  // <PlaySound src="../../audio/loop.mp3"/>
-  // {renderIf(this.props.mute, <img onClick={this.SoundMute} src="../../image/volume-mute2.png"/>)}
-  // {renderIf(!this.props.mute, <img onClick={this.SoundMute} src="../../image/volume-mute.png" />)}
+  // <PlaySound name="audioBackround" src="../../audio/loop.mp3"/>
+  // <img style={{'marginLeft': '50%'}} onClick={this.soundMute} onChange={this.handleChange} src={this.props.sound.src}/>
   render(){
     return (
-      <section className='landing' >
+      <section className='landing'>
           <div>
-           <BlockImage
-            onClick={this.handelClick}
-            flip={this.props.start}/>
+          <BlockImage onClick={this.handleClick} flip={this.props.start}/>
           </div>
       </section>
     )
@@ -56,7 +59,7 @@ class Landing extends React.Component {
 const mapStateToProps = (state, props) => {
   return {
     // mouse: state.mouse,
-    mute: state.sound.mute,
+    sound: state.sound,
   }
 }
 
@@ -64,8 +67,8 @@ const mapDispatchToProp = (dispatch, getState) => {
   return {
     startGame: (game) => dispatch(startGame(game)),
     // followMouse: (mouse) => dispatch(followMouse(mouse)),
-    stopAudio: (audio) => dispatch(stopAudio(audio)),
-    muteAudio: (audio) => dispatch(muteAudio(audio)),
+    mute_Audio: (name, mute) => dispatch(mute_Audio(name, mute)),
+    updateSound: (sound) => dispatch(updateSound(sound)),
   }
 }
 
