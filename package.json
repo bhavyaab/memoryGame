@@ -7,11 +7,11 @@
     "globals": {
       "__DEBUG__": true,
       "process.env": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "devlopement"
       }
     }
   },
-  "homepage": "http://bhavyaab.github.io/memoryGame",
+  "homepage": "https://bhavyaab.github.io/memoryGame",
   "scripts": {
     "electron": "electron .",
     "start": "node server.js",

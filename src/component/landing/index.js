@@ -8,17 +8,19 @@ import PlaySound from '../playSound'
 import generateCombination from '../../lib/gameUtil.js'
 import {startGame, updateGame, endGame} from '../../action/game-action.js'
 import { followMouse } from '../../action/mouse-action.js'
-import { stopAudio, muteAudio } from '../../action/sound-action.js'
+import { stopAudio, mute_Audio, muteAudio } from '../../action/sound-action.js'
 
 class Landing extends React.Component {
   constructor(props){
     super(props)
     this.state = {}
-    this.handelClick = this.handelClick.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     // this.onMouseMove = this.onMouseMove.bind(this)
+    this.soundMute = this.soundMute.bind(this)
   }
 
-  handelClick(e){
+  handleClick(e){
     e.preventDefault()
     this.props.startGame()
   }
@@ -33,16 +35,24 @@ class Landing extends React.Component {
   // onMouseMove={this.onMouseMove}
   soundMute(e){
     e.preventDefault()
-    this.props.stopAudio()
+    let mute = this.props.mute
+    console.log(' MUTEEEEEEEEEEEEEEEEEEEE ', mute)
+    this.props.muteAudio('audioBackround', mute)
+  }
+  handleChange(e){
+    e.preventDefault()
+    console.log(this.props)
+  }
+  componentWillUpdate(nextProps, nextState) {
+    console.log('componentWillUpdate === ', nextProps, nextState)
   }
   render(){
     return (
       <section className='landing' >
           <div>
-          <PlaySound src="../../audio/loop.mp3"/>
-           <BlockImage
-            onClick={this.handelClick}
-            flip={this.props.start}/>
+          <PlaySound name="audioBackround" src="../../audio/loop.mp3"/>
+          <img onClick={this.soundMute} onChange={this.handleChange} src={this.props.src}/>
+          <BlockImage onClick={this.handleClick} flip={this.props.start}/>
           </div>
       </section>
     )
@@ -54,6 +64,7 @@ const mapStateToProps = (state, props) => {
   return {
     // mouse: state.mouse,
     mute: state.sound.mute,
+    src: state.sound.src,
   }
 }
 
@@ -61,8 +72,9 @@ const mapDispatchToProp = (dispatch, getState) => {
   return {
     startGame: (game) => dispatch(startGame(game)),
     // followMouse: (mouse) => dispatch(followMouse(mouse)),
-    stopAudio: (audio) => dispatch(stopAudio(audio)),
-    muteAudio: (audio) => dispatch(muteAudio(audio)),
+    stopAudio: (val) => dispatch(stopAudio(val)),
+    muteAudio: (name, mute) => dispatch(muteAudio(name, mute)),
+    mute_Audio: (val) => dispatch(mute_Audio(val)),
   }
 }
 
