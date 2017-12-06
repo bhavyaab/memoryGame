@@ -7,7 +7,7 @@ import Counter from '../counter'
 import Message from '../message'
 import PlaySound from '../playSound'
 
-import { cardStart, cardLookup } from '../../action/card-action.js'
+import { cardLookup } from '../../action/card-action.js'
 import {startMe, updateMe, gameReset } from '../../action/game-action.js'
 // import { followMouse } from '../../action/mouse-action.js'
 
@@ -68,7 +68,7 @@ class BlockImage extends React.Component{
               left: `${j * 22.5}%`,
             }}
             id={ i + '' + j }
-            key={ i + '' + j }
+            key={ count }
             notCenter='true'
             classes={!this.props.card.flip? 'flipper flip':'flipper'}
             frontImage={this.state.backCardImage}
@@ -89,7 +89,6 @@ class BlockImage extends React.Component{
     }
     return (
       <div className="blockImage" >
-      <PlaySound name="clickSound" src="../../audio/click.mp3"/>
         {allImage}
         {renderIf(this.props.card.counterOn,
           <div className={(this.props.counter > 0)? 'cover':'cover Z'}>
@@ -103,7 +102,6 @@ class BlockImage extends React.Component{
           onClick={this.startThisGame}
           onChange={this.handleChange}
           /></div>)}
-          {this.props.counter == 1? this.props.cardStart(this.props.card):console.log()}
           {renderIf(!this.props.card.counterOn, <Counter style={styleCenter}/>)}
           {renderIf((this.props.game.clicked > 3),
             <Message message="Game Over!!"
@@ -140,7 +138,6 @@ const mapDispatchToProp = (dispatch, getState) => {
     startGame: (game, card) => dispatch(startMe(game, card)),
     updateGame: (game, picked) => dispatch(updateMe(game, picked)),
     gameReset: (game) => dispatch(gameReset(game)),
-    cardStart: (card) => dispatch(cardStart(card)),
     cardLookup: (id) => dispatch(cardLookup(id)),
     // followMouse: (offsetX, offsetY) => dispatch(followMouse(offsetX, offsetY)),
   }

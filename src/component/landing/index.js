@@ -48,7 +48,7 @@ class Landing extends React.Component {
           <div>
           <PlaySound name="audioBackround" src="../../audio/loop.mp3"/>
           <BlockImage onClick={this.handleClick} flip={this.props.start}/>
-          <img style={{'margin-left': '50%'}} onClick={this.soundMute} onChange={this.handleChange} src={this.props.sound.src}/>
+          <img style={{'marginLeft': '50%'}} onClick={this.soundMute} onChange={this.handleChange} src={this.props.src}/>
           </div>
       </section>
     )
@@ -60,6 +60,7 @@ const mapStateToProps = (state, props) => {
   return {
     // mouse: state.mouse,
     sound: state.sound,
+    src: state.sound.src,
   }
 }
 
