@@ -30,13 +30,16 @@ export const controlAudio = (val) => ({
   type: 'CONTROL_AUDIO',
   payload: val,
 })
-export const mute_Audio = (val) => ({
+export const muteAudio = (val) => ({
+  type: 'MUTE_AUDIO',
+  payload: val,
+})
+export const updateSound = (val) => ({
   type: 'MUTE_AUDIO',
   payload: val,
 })
 
-export function muteAudio (name, mute) {
-  console.log('MUTE audio>>  name ', name , ' mute ', mute )
+export function mute_Audio (name, mute) {
   mute = !mute
   if(!mute){
     return dispatch => {

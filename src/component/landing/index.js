@@ -8,21 +8,26 @@ import PlaySound from '../playSound'
 import generateCombination from '../../lib/gameUtil.js'
 import {startGame, updateGame, endGame} from '../../action/game-action.js'
 import { followMouse } from '../../action/mouse-action.js'
-import { stopAudio, mute_Audio, muteAudio } from '../../action/sound-action.js'
+import { mute_Audio, updateSound } from '../../action/sound-action.js'
 
 class Landing extends React.Component {
   constructor(props){
     super(props)
-    this.state = {}
+    this.state = {
+    }
     this.handleClick = this.handleClick.bind(this)
-    this.handleChange = this.handleChange.bind(this)
     // this.onMouseMove = this.onMouseMove.bind(this)
     this.soundMute = this.soundMute.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleClick(e){
     e.preventDefault()
     this.props.startGame()
+  }
+  handleChange(e){
+    this.props.updateSound(this.props.sound)
+    console.log(' state src ', this.state.src)
   }
   // onMouseMove(e){
   //   e.preventDefault()
@@ -35,24 +40,15 @@ class Landing extends React.Component {
   // onMouseMove={this.onMouseMove}
   soundMute(e){
     e.preventDefault()
-    let mute = this.props.mute
-    console.log(' MUTEEEEEEEEEEEEEEEEEEEE ', mute)
-    this.props.muteAudio('audioBackround', mute)
-  }
-  handleChange(e){
-    e.preventDefault()
-    console.log(this.props)
-  }
-  componentWillUpdate(nextProps, nextState) {
-    console.log('componentWillUpdate === ', nextProps, nextState)
+    this.props.mute_Audio('audioBackround', this.props.sound.mute)
   }
   render(){
     return (
-      <section className='landing' >
+      <section className='landing'>
           <div>
           <PlaySound name="audioBackround" src="../../audio/loop.mp3"/>
-          <img onClick={this.soundMute} onChange={this.handleChange} src={this.props.src}/>
           <BlockImage onClick={this.handleClick} flip={this.props.start}/>
+          <img style={{'margin-left': '50%'}} onClick={this.soundMute} onChange={this.handleChange} src={this.props.sound.src}/>
           </div>
       </section>
     )
@@ -63,8 +59,7 @@ class Landing extends React.Component {
 const mapStateToProps = (state, props) => {
   return {
     // mouse: state.mouse,
-    mute: state.sound.mute,
-    src: state.sound.src,
+    sound: state.sound,
   }
 }
 
@@ -72,9 +67,8 @@ const mapDispatchToProp = (dispatch, getState) => {
   return {
     startGame: (game) => dispatch(startGame(game)),
     // followMouse: (mouse) => dispatch(followMouse(mouse)),
-    stopAudio: (val) => dispatch(stopAudio(val)),
-    muteAudio: (name, mute) => dispatch(muteAudio(name, mute)),
-    mute_Audio: (val) => dispatch(mute_Audio(val)),
+    mute_Audio: (name, mute) => dispatch(mute_Audio(name, mute)),
+    updateSound: (sound) => dispatch(updateSound(sound)),
   }
 }
 

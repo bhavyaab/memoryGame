@@ -13,18 +13,15 @@ export default (state=initialState, action) =>{
     state[payload.name] = payload.value
     return state
   case 'PLAY_AUDIO':
-    console.log('play audio == ', payload)
     audio = state[payload]
     audio.play()
     return state
   case 'MUTE_AUDIO':
-    console.log(' mute audio == mute state', state.mute, ' src= ', state.src)
     state.mute = !state.mute
     if(state.mute) state.src = '../../image/volume-mute2.png'
     if(!state.mute) state.src = '../../image/volume-mute.png'
     return state
   case 'STOP_AUDIO':
-    console.log(' stop audio === ', payload)
     audio = state[payload]
     audio.pause()
     return state
