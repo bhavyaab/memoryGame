@@ -39,18 +39,12 @@ export const updateSound = (val) => ({
   payload: val,
 })
 
-export function mute_Audio (name, mute) {
-  mute = !mute
-  if(!mute){
-    return dispatch => {
-      dispatch({type: 'PLAY_AUDIO', payload: name})
-      dispatch({ type: 'MUTE_AUDIO', payload: mute})
+let name
+export function mute_Audio (sound) {
+  return dispatch => {
+    for(var prop in sound.effects){
+      sound.mute? dispatch({type: 'PLAY_AUDIO', payload: prop}):dispatch({type: 'STOP_AUDIO', payload: prop})
     }
-  }
-  if(mute){
-    return dispatch => {
-      dispatch({type: 'STOP_AUDIO', payload: name})
-      dispatch({ type: 'MUTE_AUDIO'})
-    }
+    dispatch({ type: 'MUTE_AUDIO'})
   }
 }

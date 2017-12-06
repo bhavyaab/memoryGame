@@ -2,11 +2,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {connect} from 'react-redux'
-import { updateGame } from '../../action/game-action.js'
-import {renderIf} from '../../lib/util'
-import { loadAudio, stopAudio, muteAudio } from '../../action/sound-action.js'
+import {renderIf} from '../../../lib/util'
+import { loadAudio, stopAudio, muteAudio } from '../../../action/sound-action.js'
 
-class PlaySound extends React.Component {
+class Audio extends React.Component {
   constructor (props) {
     super(props)
     this.state = { }
@@ -19,11 +18,9 @@ class PlaySound extends React.Component {
   }
   render() {
     return (
-      <div className='playSound'>
       <audio ref={(audio) => { this.audio = audio } } preload="auto" >
          <source src={this.props.src}></source>
       </audio>
-      </div>
     )
   }
 }
@@ -40,4 +37,4 @@ const mapDispatchToProp = (dispatch, getState) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProp)(PlaySound)
+export default connect(mapStateToProps, mapDispatchToProp)(Audio)
