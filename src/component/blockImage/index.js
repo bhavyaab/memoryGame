@@ -7,7 +7,7 @@ import Counter from '../counter'
 import Message from '../message'
 import PlaySound from '../playSound'
 
-import { cardStart, cardLookup } from '../../action/card-action.js'
+import { cardLookup } from '../../action/card-action.js'
 import {startMe, updateMe, gameReset } from '../../action/game-action.js'
 // import { followMouse } from '../../action/mouse-action.js'
 
@@ -33,7 +33,7 @@ class BlockImage extends React.Component{
     e.preventDefault()
     if( (this.props.lookup[e.target.id]) || (e.target.id == '') ) return this.props.lookup
     this.props.cardLookup(e.target.id)
-    e.target.parentNode.parentNode.classList = 'flipper flip'
+    e.target.parentNode.parentNode.classList.add('flip')
     this.props.updateGame(this.props.game, picked)
   }
   handleChange(e){
@@ -68,7 +68,7 @@ class BlockImage extends React.Component{
               left: `${j * 22.5}%`,
             }}
             id={ i + '' + j }
-            key={ i + '' + j }
+            key={ count }
             notCenter='true'
             classes={!this.props.card.flip? 'flipper flip':'flipper'}
             frontImage={this.state.backCardImage}
@@ -87,7 +87,6 @@ class BlockImage extends React.Component{
       height: '48%',
       width: '48%',
     }
-    // <PlaySound name="clickSound" src="../../audio/click.mp3"/>
     return (
       <div className="blockImage" >
         {allImage}
@@ -103,7 +102,6 @@ class BlockImage extends React.Component{
           onClick={this.startThisGame}
           onChange={this.handleChange}
           /></div>)}
-          {this.props.counter == 1? this.props.cardStart(this.props.card):console.log()}
           {renderIf(!this.props.card.counterOn, <Counter style={styleCenter}/>)}
           {renderIf((this.props.game.clicked > 3),
             <Message message="Game Over!!"
@@ -140,7 +138,6 @@ const mapDispatchToProp = (dispatch, getState) => {
     startGame: (game, card) => dispatch(startMe(game, card)),
     updateGame: (game, picked) => dispatch(updateMe(game, picked)),
     gameReset: (game) => dispatch(gameReset(game)),
-    cardStart: (card) => dispatch(cardStart(card)),
     cardLookup: (id) => dispatch(cardLookup(id)),
     // followMouse: (offsetX, offsetY) => dispatch(followMouse(offsetX, offsetY)),
   }

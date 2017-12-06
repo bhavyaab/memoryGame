@@ -43,7 +43,7 @@ class Landing extends React.Component {
     this.props.mute_Audio('audioBackround', this.props.sound.mute)
   }
   // <PlaySound name="audioBackround" src="../../audio/loop.mp3"/>
-  // <img style={{'marginLeft': '50%'}} onClick={this.soundMute} onChange={this.handleChange} src={this.props.sound.src}/>
+  // <img style={{'marginLeft': '50%'}} onClick={this.soundMute} onChange={this.handleChange} src={this.props.src}/>
   render(){
     return (
       <section className='landing'>
@@ -60,6 +60,7 @@ const mapStateToProps = (state, props) => {
   return {
     // mouse: state.mouse,
     sound: state.sound,
+    src: state.sound.src,
   }
 }
 
