@@ -9,11 +9,13 @@ class Sound extends React.Component {
     this.state = { }
   }
 
+  // <Audio name="audioBackround"  src="../../audio/loop.mp3"/>
   render() {
     return (
       <div className="sound">
-        <Audio name="audioBackround"  src="../../audio/loop.mp3"/>
         <Audio name="clickSound" src="../../audio/click.mp3"/>
+        <Audio name="wrongClickSound" src="../../audio/cuak.mp3"/>
+        <Audio name="rightClickSound" src="../../audio/cuak.mp3"/>
       </div>
     )
   }

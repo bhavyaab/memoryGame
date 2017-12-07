@@ -13,7 +13,7 @@ class Audio extends React.Component {
 
   componentDidMount() {
     this.audio.volume= this.props.volume
-    // if(!this.props.mute) this.audio.play()
+    if(!this.props.mute) this.audio.play()
     this.props.loadAudio({'name':this.props.name,'value':this.audio})
   }
   render() {

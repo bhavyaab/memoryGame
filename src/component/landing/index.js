@@ -40,15 +40,15 @@ class Landing extends React.Component {
     e.preventDefault()
     this.props.mute_Audio(this.props.sound)
   }
+  // <img style={{'marginLeft': '50%'}}
+  // onClick={this.soundMute}
+  // onChange={this.handleChange}
+  // src={this.props.sound.muteImage}/>
   render(){
     return (
       <section className='landing'>
           <div>
           <Sound />
-          <img style={{'marginLeft': '50%'}}
-           onClick={this.soundMute}
-           onChange={this.handleChange}
-           src={this.props.sound.muteImage}/>
           <BlockImage onClick={this.handleClick} flip={this.props.start}/>
           </div>
       </section>

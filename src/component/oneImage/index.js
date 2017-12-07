@@ -13,16 +13,16 @@ class OneImage extends React.Component{
   }
   handleEnter(e){
     e.preventDefault()
-    console.log('mouse enter')
     this.props.playAudio('clickSound')
-    this.props.setVolume({name:'clickSound', volume:0.05})
+    // this.props.setVolume({name:'clickSound', volume:0.05})
   }
   render(){
     return (
     <div
     style={this.props.style}
     className='oneImage flip-container'
-    onMouseEnter={this.handleEnter}  onMouseLeave={this.handleEnter}
+    onMouseLeave={this.handleEnter}
+    onMouseEnter={this.handleEnter}
     >
        <div className={this.props.classes}
             onClick={this.props.onClick}
