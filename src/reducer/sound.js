@@ -1,7 +1,7 @@
 
 let initialState = {
   mute: false,
-  volume: 0.001,
+  volume: 0.05,
   muteImage: '../../image/volume-mute.png',
   effects: {},
 }
@@ -15,7 +15,9 @@ export default (state=initialState, action) =>{
     state.effects[payload.name] = payload.value
     return state
   case 'PLAY_AUDIO':
-    audio = state.effects[payload]
+    audio = state.effects[payload.name]
+    if(payload.src) audio.src = payload.src
+    if(payload.volume) audio.volume = payload.volume
     audio.play()
     return state
   case 'SET_VOLUME':

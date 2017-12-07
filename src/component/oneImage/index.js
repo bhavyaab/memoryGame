@@ -13,8 +13,7 @@ class OneImage extends React.Component{
   }
   handleEnter(e){
     e.preventDefault()
-    this.props.playAudio('clickSound')
-    // this.props.setVolume({name:'clickSound', volume:0.05})
+    this.props.playAudio({name:'clickSound', volume:0.1})
   }
   render(){
     return (
