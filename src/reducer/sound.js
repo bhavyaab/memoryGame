@@ -18,6 +18,10 @@ export default (state=initialState, action) =>{
     audio = state.effects[payload]
     audio.play()
     return state
+  case 'SET_VOLUME':
+    audio = state.effects[payload.name]
+    audio.volume = payload.volume
+    return state
   case 'MUTE_AUDIO':
     state.mute = !state.mute
     if(state.mute) state.muteImage = '../../image/volume-mute2.png'
@@ -25,7 +29,6 @@ export default (state=initialState, action) =>{
     return state
   case 'STOP_AUDIO':
     audio = state.effects[payload]
-    console.log(' stop audio ', audio, payload)
     audio.pause()
     return state
   case 'CONTROL_AUDIO':

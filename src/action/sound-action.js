@@ -6,7 +6,7 @@ export const soundMute = (val) => ({
 })
 
 export const playAudio = (val) => ({
-  typr: 'PLAY_AUDIO',
+  type: 'PLAY_AUDIO',
   payload: val,
     // if(this.props.mute) return
     // this.props.audio.loop = false
@@ -25,7 +25,10 @@ export const loadAudio = (val) => ({
   type: 'LOAD_AUDIO',
   payload: val,
 })
-
+export const setVolume = (val) => ({
+  type: 'SET_VOLUME',
+  payload: val,
+})
 export const controlAudio = (val) => ({
   type: 'CONTROL_AUDIO',
   payload: val,

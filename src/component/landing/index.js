@@ -25,8 +25,7 @@ class Landing extends React.Component {
     this.props.startGame()
   }
   handleChange(e){
-    this.props.updateSound(this.props.sound)
-    console.log(' state src ', this.state.src)
+    console.log(' state src ', this)
   }
   // onMouseMove(e){
   //   e.preventDefault()
@@ -40,17 +39,16 @@ class Landing extends React.Component {
   soundMute(e){
     e.preventDefault()
     this.props.mute_Audio(this.props.sound)
-    console.log(' sound ', this.props.sound)
   }
+  // <img style={{'marginLeft': '50%'}}
+  // onClick={this.soundMute}
+  // onChange={this.handleChange}
+  // src={this.props.sound.muteImage}/>
   render(){
     return (
       <section className='landing'>
           <div>
           <Sound />
-          <img style={{'marginLeft': '50%'}}
-           onClick={this.soundMute}
-           onChange={this.handleChange}
-           src={this.props.sound.muteImage}/>
           <BlockImage onClick={this.handleClick} flip={this.props.start}/>
           </div>
       </section>

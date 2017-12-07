@@ -5,7 +5,6 @@ import {renderIf} from '../../lib/util'
 import OneImage from '../oneImage'
 import Counter from '../counter'
 import Message from '../message'
-import PlaySound from '../playSound'
 
 import { cardLookup } from '../../action/card-action.js'
 import {startMe, updateMe, gameReset } from '../../action/game-action.js'
@@ -42,6 +41,12 @@ class BlockImage extends React.Component{
   resetAll(e){
     e.preventDefault()
     this.props.gameReset()
+  }
+  handleEnter(e){
+    e.preventDefault()
+    console.log('mouse enter')
+    this.props.playAudio('clickSound')
+    this.props.setVolume({name:'clickSound', volume:1})
   }
   // eyeMove(e){
   //   e.preventDefault()
