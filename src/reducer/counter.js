@@ -9,7 +9,8 @@ export default (state=5, action) => {
     state = payload
     return state
   case 'COUNTER_ENDS':
-    return 0
+    state.val = 0
+    return state
   default:
     return state
   }

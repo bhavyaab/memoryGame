@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import { updateCounter} from '../../action/counter-action.js'
-import { cardStart, cardFlip, cardToggle} from '../../action/card-action.js'
+import {renderIf} from '../../lib/util'
+import { updateCounterStatus } from '../../action/counter-action.js'
 
 class Counter extends React.Component {
   constructor (props) {
@@ -11,15 +11,16 @@ class Counter extends React.Component {
 
   render() {
     var x = this
-    var { counter } = this.props
+    var { counter, card } = this.props
     setTimeout(function() {
-      if( counter > 0) x.props.updateCounter(counter - 1)
+      if( counter > -1) x.props.updateCounterStatus(counter - 1, card)
     }, 1000)
     return (
       <div className="cover">
       <ul className="over">
         <li>{this.props.counter}</li>
-        <li>Count down begins!!</li>
+        {renderIf((this.props.counter > 0 ), <li>Count down begins!!</li>)}
+        {renderIf((this.props.counter === 0 ), <li>{'Let\'s go!!'}</li>)}
       </ul>
       </div>
     )
@@ -28,12 +29,13 @@ class Counter extends React.Component {
 const mapStateToProps = (state, props) => {
   return {
     counter: state.counter,
+    card: state.card,
   }
 }
 
 const mapDispatchToProp = (dispatch, getState) => {
   return {
-    updateCounter: (counter) => dispatch(updateCounter(counter)),
+    updateCounterStatus: (counter, card) => dispatch(updateCounterStatus(counter, card)),
   }
 }
 

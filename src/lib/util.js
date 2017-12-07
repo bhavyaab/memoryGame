@@ -7,7 +7,7 @@ export const toggleState = (key, x) => {
   const currentState = x.state[key]
   x.setState({key : !currentState})
 }
- 
+
 export const log = (act, msg) => {
-  __DEBUG__ ? console.log(act, msg) : ''
+  __DEBUG__ ? act == '__ERROR__'? console.error(act, msg):console.debug(act, msg) : ''
 }

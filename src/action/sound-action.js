@@ -6,7 +6,7 @@ export const soundMute = (val) => ({
 })
 
 export const playAudio = (val) => ({
-  typr: 'PLAY_AUDIO',
+  type: 'PLAY_AUDIO',
   payload: val,
     // if(this.props.mute) return
     // this.props.audio.loop = false
@@ -25,7 +25,10 @@ export const loadAudio = (val) => ({
   type: 'LOAD_AUDIO',
   payload: val,
 })
-
+export const setVolume = (val) => ({
+  type: 'SET_VOLUME',
+  payload: val,
+})
 export const controlAudio = (val) => ({
   type: 'CONTROL_AUDIO',
   payload: val,
@@ -39,18 +42,12 @@ export const updateSound = (val) => ({
   payload: val,
 })
 
-export function mute_Audio (name, mute) {
-  mute = !mute
-  if(!mute){
-    return dispatch => {
-      dispatch({type: 'PLAY_AUDIO', payload: name})
-      dispatch({ type: 'MUTE_AUDIO', payload: mute})
+let name
+export function mute_Audio (sound) {
+  return dispatch => {
+    for(var prop in sound.effects){
+      sound.mute? dispatch({type: 'PLAY_AUDIO', payload: prop}):dispatch({type: 'STOP_AUDIO', payload: prop})
     }
-  }
-  if(mute){
-    return dispatch => {
-      dispatch({type: 'STOP_AUDIO', payload: name})
-      dispatch({ type: 'MUTE_AUDIO'})
-    }
+    dispatch({ type: 'MUTE_AUDIO'})
   }
 }
