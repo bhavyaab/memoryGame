@@ -14,6 +14,8 @@ class Sound extends React.Component {
     return (
       <div className="sound">
         <Audio name="clickSound" src="../../audio/click.mp3"/>
+        <Audio name="wrongClickSound" src="../../audio/cuak.mp3"/>
+        <Audio name="rightClickSound" src="../../audio/cuak.mp3"/>
       </div>
     )
   }

@@ -26,11 +26,12 @@ export function startMe(game, card){
 export function updateMe(game, picked){
   picked == game.selected? game.right++:game.wrong++
   game.clicked++
-  if((game.clicked > 3) || (game.right >= 3)) return dispatch => {
+  return dispatch => {
+    dispatch({type: 'SET_VOLUME', payload: '0.05'})
+    picked == game.selected? dispatch({type: 'PLAY_AUDIO', payload: 'rightClickSound'}):dispatch({type: 'PLAY_AUDIO', payload: 'wrongClickSound'})
+    if((game.clicked > 3) || (game.right >= 3)) dispatch({type: 'CARD_END', payload: ''})
     dispatch({type: 'UPDATE_GAME', payload: game})
-    dispatch({type: 'CARD_END', payload: ''})
   }
-  return dispatch => {dispatch({type: 'UPDATE_GAME', payload: game})}
 }
 
 export function gameReset(game){
