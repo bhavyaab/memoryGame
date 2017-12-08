@@ -18,11 +18,11 @@ ReactDom.render(<App />, document.getElementById('root'))
 
 var loading = {
   start: function() {
-    document.body.insertAdjacentHTML('beforeend', '<div id="loading">LOADING</div>')
+    document.body.insertAdjacentHTML('beforeend', '<div id="loader"></div>')
   },
   complete: function() {
-    var loading = document.getElementById('loading')
-    console.log(loading)
+    var loading = document.getElementById('loader')
+    console.log('loading')
     loading.remove(loading)
   },
 }
