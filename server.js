@@ -10,3 +10,7 @@ app.use(express.static(`${__dirname}/build`))
 app.listen(PORT, function(){
   console.log('server up:', PORT)
 })
+var http = require('http')
+setInterval(function() {
+  http.get('http://memorgame.herokuapp.com')
+}, 300000)
